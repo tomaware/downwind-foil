@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: prevision-downwind
@@ -16,6 +18,9 @@ jobs:
   prevision:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,3 +45,13 @@ jobs:
             sleep $((i * 5))
           done
           echo "::warning::prévision non publiée après 3 essais"
+      - name: Assembler la page web
+        run: |
+          mkdir -p _site/data
+          cp web/index.html _site/
+          cp data/downwind.json _site/data/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -2,7 +2,7 @@
 
 Module de prévision **vent + mer au large** pour le downwind en wing foil : remonter le vent puis redescendre (aller-retour), ou partir d'un point A pour arriver à un point B vent dans le dos (avec navette). Recalculé toutes les heures par GitHub Actions.
 
-**À lire : [`data/PREVISION.md`](data/PREVISION.md)** (meilleurs créneaux des 4 prochains jours, puis chaque parcours toutes les 3 h). Les données complètes pour une future app sont dans `data/downwind.json`.
+**Page web : https://tomaware.github.io/downwind-foil/** (à ajouter sur l'écran d'accueil du téléphone). Version texte : [`data/PREVISION.md`](data/PREVISION.md) (meilleurs créneaux des 4 prochains jours, puis chaque parcours toutes les 3 h). Les données complètes pour une future app sont dans `data/downwind.json`.
 
 ## Parcours (`engine/runs.json`)
 
