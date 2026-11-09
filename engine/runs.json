@@ -1,32 +1,52 @@
 {
-  "_doc": "Parcours de downwind le long de la côte. a / b = extrémités (sur l'eau, ~300 m du bord) ; coast = cap de la côte de a vers b (°) ; normal = direction du large vue de la plage (°). Le sens du parcours (a→b ou b→a) est choisi heure par heure selon le vent. buoy = bouée Candhis qui sert à vérifier les modèles de vagues ; access = mises à l'eau / sorties possibles. Coordonnées approximatives : à corriger avec ta connaissance du terrain (confidence).",
+  "_doc": "Parcours de downwind. a / b = départ et arrivée (sur l'eau) ; path = tracé au large (≈ 800 m du bord) ; normal = direction du large vue de la plage (°) ; oneWay = seulement de a vers b. Le sens (a→b ou b→a) est sinon choisi heure par heure selon le vent. buoy = bouée Candhis qui vérifie les modèles de vagues ; access = mises à l'eau / sorties. Coordonnées approximatives : à corriger avec ta connaissance du terrain.",
   "runs": [
     {
-      "id": "sete-palavas",
-      "name": "Sète ↔ Palavas",
+      "id": "frontignan-palavas",
+      "name": "Frontignan ↔ Palavas",
       "a": {
-        "name": "Sète (Lido)",
-        "lat": 43.3855,
-        "lon": 3.656
+        "name": "Frontignan plage",
+        "lat": 43.4277,
+        "lon": 3.7658
       },
       "b": {
         "name": "Palavas",
-        "lat": 43.524,
-        "lon": 3.927
+        "lat": 43.5222,
+        "lon": 3.9328
       },
-      "coast": 54,
+      "path": [
+        [
+          43.4277,
+          3.7658
+        ],
+        [
+          43.4532,
+          3.8128
+        ],
+        [
+          43.4772,
+          3.8478
+        ],
+        [
+          43.5027,
+          3.8768
+        ],
+        [
+          43.5222,
+          3.9328
+        ]
+      ],
       "normal": 144,
-      "km": 26,
       "buoy": "03404",
       "access": [
-        "Sète Lido",
         "Frontignan plage",
         "Les Aresquiers",
+        "Villeneuve-lès-Maguelone",
         "Maguelone",
         "Palavas"
       ],
       "confidence": "medium",
-      "notes": "Long run par SO (de Sète vers Palavas) ou par NE / E (de Palavas vers Sète). Plages sauvages entre Aresquiers et Maguelone : peu de sorties.",
+      "notes": "Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauvages entre les Aresquiers et Maguelone : peu de sorties.",
       "label": {
         "bearing": 144,
         "km": 2.5
@@ -37,17 +57,33 @@
       "name": "Palavas ↔ La Grande-Motte",
       "a": {
         "name": "Palavas",
-        "lat": 43.524,
-        "lon": 3.927
+        "lat": 43.5212,
+        "lon": 3.9304
       },
       "b": {
         "name": "La Grande-Motte (Grand Travers)",
-        "lat": 43.5555,
-        "lon": 4.045
+        "lat": 43.5532,
+        "lon": 4.0484
       },
-      "coast": 70,
+      "path": [
+        [
+          43.5212,
+          3.9304
+        ],
+        [
+          43.5382,
+          3.9784
+        ],
+        [
+          43.5492,
+          4.0134
+        ],
+        [
+          43.5532,
+          4.0484
+        ]
+      ],
       "normal": 160,
-      "km": 11,
       "buoy": "03001",
       "access": [
         "Palavas",
@@ -56,68 +92,57 @@
         "Grand Travers"
       ],
       "confidence": "medium",
-      "notes": "Par SO de Palavas vers la Grande-Motte, par E / NE en sens inverse. Digues et ports (Carnon) à contourner au large.",
+      "notes": "Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues du port de Carnon à contourner au large.",
       "label": {
         "bearing": 160,
         "km": 2.5
       }
     },
     {
-      "id": "grandemotte-graudurois",
-      "name": "La Grande-Motte ↔ Le Grau-du-Roi",
+      "id": "plagesud-grandemotte",
+      "name": "Plage Sud → La Grande-Motte",
       "a": {
-        "name": "La Grande-Motte",
-        "lat": 43.5555,
-        "lon": 4.083
-      },
-      "b": {
-        "name": "Le Grau-du-Roi (rive droite)",
-        "lat": 43.532,
-        "lon": 4.134
-      },
-      "coast": 120,
-      "normal": 210,
-      "km": 5,
-      "buoy": "03001",
-      "access": [
-        "La Grande-Motte (Couchant / Levant)",
-        "Le Boucanet",
-        "Le Grau-du-Roi rive droite"
-      ],
-      "confidence": "low",
-      "notes": "Fond de baie d'Aigues-Mortes, plage face au SSO, en passant devant le Boucanet : par SE / ESE du Grau-du-Roi vers la Grande-Motte, par O / ONO dans l'autre sens. Passe du Grau-du-Roi à contourner.",
-      "label": {
-        "bearing": 40,
-        "km": 3
-      }
-    },
-    {
-      "id": "boucanet-plagesud",
-      "name": "Le Boucanet ↔ Plage Sud",
-      "a": {
-        "name": "Le Boucanet",
-        "lat": 43.551,
-        "lon": 4.1075
-      },
-      "b": {
         "name": "Plage Sud (Port Camargue)",
-        "lat": 43.5075,
-        "lon": 4.129
+        "lat": 43.506,
+        "lon": 4.122
       },
-      "coast": 158,
-      "normal": 248,
-      "km": 5,
+      "b": {
+        "name": "La Grande-Motte",
+        "lat": 43.55,
+        "lon": 4.085
+      },
+      "path": [
+        [
+          43.506,
+          4.122
+        ],
+        [
+          43.524,
+          4.113
+        ],
+        [
+          43.542,
+          4.099
+        ],
+        [
+          43.55,
+          4.085
+        ]
+      ],
+      "normal": 237,
+      "oneWay": true,
       "buoy": "03001",
       "access": [
+        "Plage Sud (interdite au kite et au wing l'été)",
+        "Le Grau-du-Roi rive gauche / rive droite",
         "Le Boucanet",
-        "Le Grau-du-Roi rive gauche",
-        "Plage Sud (interdite au kite et au wing l'été)"
+        "La Grande-Motte"
       ],
       "confidence": "low",
-      "notes": "Devant le Grau-du-Roi et Port Camargue, plage Sud face à l'OSO : par N / NNO du Boucanet vers la plage Sud, par S / SSO en sens inverse. Passes et épis (Port Camargue) : rester au large. SE et mistral / tramontane y sont side-off.",
+      "notes": "Sens unique, par SE / ESE : de la plage Sud vers la Grande-Motte en traversant la baie d'Aigues-Mortes, au large des passes de Port Camargue et du Grau-du-Roi. Sortie possible au Boucanet.",
       "label": {
-        "bearing": 200,
-        "km": 4
+        "bearing": 237,
+        "km": 2.5
       }
     }
   ],
@@ -133,12 +158,6 @@
       "name": "Espiguette",
       "lat": 43.411,
       "lon": 4.1625
-    },
-    {
-      "code": "01101",
-      "name": "Leucate",
-      "lat": 42.9167,
-      "lon": 3.125
     }
   ],
   "_doc_buoys": "Bouées au large (Candhis) qui servent à vérifier les modèles de vagues. Les mesures viennent de l'historique de Super Prévi Surf (dépôt public), pour ne pas consommer le quota Candhis une seconde fois.",

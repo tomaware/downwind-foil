@@ -75,14 +75,29 @@
     return 2 * 6371 * Math.asin(Math.sqrt(h));
   }
 
+  /** tracé du parcours (au large) : r.path, sinon la droite a → b */
+  function pathOf(r) { return r.path && r.path.length >= 2 ? r.path.map(function (c) { return { lat: c[0], lon: c[1] }; }) : [r.a, r.b]; }
+  function pathKm(r) { var p = pathOf(r), k = 0; for (var i = 1; i < p.length; i++) k += distKm(p[i - 1], p[i]); return k; }
+  /** point à la fraction f de la longueur du tracé */
+  function along(r, f) {
+    var p = pathOf(r), tot = pathKm(r), goal = f * tot, acc = 0;
+    for (var i = 1; i < p.length; i++) {
+      var d = distKm(p[i - 1], p[i]);
+      if (acc + d >= goal) { var g = d ? (goal - acc) / d : 0; return { lat: p[i - 1].lat + g * (p[i].lat - p[i - 1].lat), lon: p[i - 1].lon + g * (p[i].lon - p[i - 1].lon) }; }
+      acc += d;
+    }
+    return p[p.length - 1];
+  }
+
   /** points de prévision : 2 points en mer (au tiers et aux deux tiers du parcours) + la bouée */
   function queryPoints(runs, buoys, cfg) {
     cfg = merge(DEFAULT_CONFIG, cfg);
     var pts = [];
     runs.forEach(function (r) {
       [1 / 3, 2 / 3].forEach(function (f, i) {
-        var lat = r.a.lat + f * (r.b.lat - r.a.lat), lon = r.a.lon + f * (r.b.lon - r.a.lon);
-        var p = E.offsetPoint(lat, lon, r.normal, cfg.offshoreKm);
+        var q = along(r, f);
+        // le tracé est déjà ~0,8 km au large : on va chercher la mer à offshoreKm du bord
+        var p = E.offsetPoint(q.lat, q.lon, r.normal, r.path ? Math.max(0.5, cfg.offshoreKm - 0.8) : cfg.offshoreKm);
         pts.push({ id: r.id + '_' + i, run: r.id, lat: p.lat, lon: p.lon });
       });
     });
@@ -175,7 +190,7 @@
     });
 
     var out = ctx.runs.map(function (r) {
-      var heading = bearing(r.a, r.b), km = distKm(r.a, r.b);
+      var heading = bearing(r.a, r.b), km = pathKm(r);
       var cal = calib[r.buoy] || E.modelCalibration(null, ecfg);
       var nc = nowObs[r.buoy];
       var mid = { lat: (r.a.lat + r.b.lat) / 2, lon: (r.a.lon + r.b.lon) / 2 };
@@ -204,13 +219,13 @@
           var f = 1 + (nc.ratio - 1) * Math.exp(-Math.max(0, (t - nc.t) / 3600000) / cfg.nowcast.decayH);
           s.h *= f; s.hs *= f;
         }
-        var row = score({ t: t, windFrom: windFrom, kn: kn, gkn: gkn, agree: agree / winds.length, sea: s, heading: heading, normal: r.normal }, cfg);
+        var row = score({ t: t, windFrom: windFrom, kn: kn, gkn: gkn, agree: agree / winds.length, sea: s, heading: heading, normal: r.normal, oneWay: !!r.oneWay }, cfg);
         row.leadH = Math.round(leadH);
         row.day = daylight(t, mid.lat, mid.lon, cfg);
         rows.push(row);
       }
       return {
-        id: r.id, name: r.name, a: r.a.name, b: r.b.name, coords: [[r.a.lat, r.a.lon], [r.b.lat, r.b.lon]], label: r.label || { bearing: r.normal, km: 2.5 }, km: Math.round(km), heading: Math.round(heading), normal: r.normal,
+        id: r.id, name: r.name, a: r.a.name, b: r.b.name, coords: pathOf(r).map(function (c) { return [c.lat, c.lon]; }), oneWay: !!r.oneWay, label: r.label || { bearing: r.normal, km: 2.5 }, km: Math.round(km), heading: Math.round(heading), normal: r.normal,
         buoy: r.buoy, nowObs: nc || null, access: r.access || [], confidence: r.confidence, notes: r.notes,
         rows: rows, windows: windows(rows, r, cfg)
       };
@@ -236,6 +251,8 @@
     else if (sk.code === 'sideoff') flags.push('side-off : à plusieurs et avec une sortie sûre');
     if (gr >= 1.6) flags.push('vent irrégulier (rafales ' + Math.round(x.gkn) + ' nd)');
     if (s && s.cross > 0.4) flags.push('mer croisée');
+    var wrongWay = x.oneWay && dir === 'ba';
+    if (wrongWay) flags.push('parcours à sens unique : vent dans le mauvais sens');
     var scores = {};
     Object.keys(LEVELS).forEach(function (k) {
       var lv = LEVELS[k];
@@ -244,12 +261,13 @@
       // le vent fait l'essentiel (pas de vent, pas de downwind) ; la mer décide entre « correct » et « top »
       var sc = 10 * fW * fShore * fAlong * fGust * (0.35 + 0.65 * fH * fT * fCross) * fSea;
       if (sk.code === 'off') sc = Math.min(sc, 1);
+      if (wrongWay) sc = 0;
       if (k === 'debutant' && sk.code === 'sideoff') sc = Math.min(sc, 2);
       scores[k] = Math.round(sc * 10) / 10;
     });
     var lvl = LEVELS[cfg.level] || LEVELS.intermediaire;
     // aller-retour : remonter le vent puis redescendre, possible si le vent est le long de la côte et pas trop fort
-    var roundTrip = (sk.code === 'side' || sk.code === 'sideon') && x.kn >= lvl.wind[0] && x.kn <= cfg.upwindMaxKn;
+    var roundTrip = !wrongWay && (sk.code === 'side' || sk.code === 'sideon') && x.kn >= lvl.wind[0] && x.kn <= cfg.upwindMaxKn;
     return {
       t: x.t, kn: Math.round(x.kn * 10) / 10, gust: isNum(x.gkn) ? Math.round(x.gkn) : null, windFrom: Math.round(x.windFrom),
       shore: sk.kind, shoreCode: sk.code, dir: dir, along: Math.round(along), agree: Math.round(x.agree * 100) / 100,
@@ -288,7 +306,7 @@
 
   function describe(x) {
     var p = [Math.round(x.kn) + ' nd ' + E.compass(x.windFrom) + (x.gust ? ' (raf. ' + x.gust + ')' : ''), x.shore];
-    if (x.bumpH != null) p.push('bosses ' + E.fmt(x.bumpH) + ' m' + (x.bumpT ? ' · ' + E.fmt(x.bumpT, 0) + ' s (~' + x.spacing + ' m)' : ''));
+    if (x.bumpH != null) p.push('houle ' + E.fmt(x.bumpH) + ' m' + (x.bumpT ? ' · ' + E.fmt(x.bumpT, 0) + ' s (~' + x.spacing + ' m)' : ''));
     if (x.cross > 0.4) p.push('mer croisée');
     return p.join(' · ');
   }
@@ -304,7 +322,7 @@
       best: all.slice(0, 10).map(function (w) { return { run: w.run, from: w.from, to: w.to, start: w.start, end: w.end, mean: w.mean, peak: w.peak.score, text: w.text }; }),
       runs: res.runs.map(function (r) {
         return {
-          id: r.id, name: r.name, a: r.a, b: r.b, coords: r.coords, label: r.label, km: r.km, heading: r.heading, normal: r.normal, buoy: r.buoy, nowObs: r.nowObs,
+          id: r.id, name: r.name, a: r.a, b: r.b, coords: r.coords, oneWay: r.oneWay, label: r.label, km: r.km, heading: r.heading, normal: r.normal, buoy: r.buoy, nowObs: r.nowObs,
           access: r.access, confidence: r.confidence, notes: r.notes,
           windows: r.windows.map(function (w) { return { from: w.from, to: w.to, start: w.start, end: w.end, mean: w.mean, peak: w.peak.score, text: w.text }; }),
           hours: r.rows.filter(function (x) { return !x.missing; }).map(function (x) {
@@ -317,5 +335,5 @@
   }
 
   return { VERSION: '1.0.0', DEFAULT_CONFIG: DEFAULT_CONFIG, LEVELS: LEVELS, bearing: bearing, distKm: distKm, queryPoints: queryPoints,
-    shoreKind: shoreKind, windFactor: windFactor, bumps: bumps, score: score, run: run, windows: windows, describe: describe, toJSON: toJSON, merge: merge };
+    shoreKind: shoreKind, pathOf: pathOf, pathKm: pathKm, along: along, windFactor: windFactor, bumps: bumps, score: score, run: run, windows: windows, describe: describe, toJSON: toJSON, merge: merge };
 });

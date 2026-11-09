@@ -6,16 +6,17 @@ const D = require('../engine/downwind-engine.js');
 const doc = require('../engine/runs.json');
 
 const cfg = D.merge(D.DEFAULT_CONFIG, {});
-const sete = doc.runs.find((r) => r.id === 'sete-palavas');
+const sete = doc.runs.find((r) => r.id === 'frontignan-palavas');
 const heading = D.bearing(sete.a, sete.b);
 const sea = (h, t, d, cross) => ({ h, t, cross: cross || 0, hs: h });
-const hour = (windFrom, kn, gkn, s, r) => D.score({ t: 0, windFrom, kn, gkn, agree: 1, sea: s, heading: r ? D.bearing(r.a, r.b) : heading, normal: (r || sete).normal }, cfg);
+const hour = (windFrom, kn, gkn, s, r) => D.score({ t: 0, windFrom, kn, gkn, agree: 1, sea: s, heading: r ? D.bearing(r.a, r.b) : heading, normal: (r || sete).normal, oneWay: !!(r && r.oneWay) }, cfg);
 
 test('géométrie des parcours : la normale est perpendiculaire à la côte et pointe vers la mer', () => {
   doc.runs.forEach((r) => {
     const h = D.bearing(r.a, r.b);
     assert.ok(Math.abs(Math.abs(E.angDiff(r.normal, h)) - 90) < 8, r.id + ' normale ⟂ côte');
-    assert.ok(Math.abs(D.distKm(r.a, r.b) - r.km) < 2, r.id + ' distance');
+    assert.ok(D.pathKm(r) >= D.distKm(r.a, r.b) - 1e-9 && D.pathKm(r) < D.distKm(r.a, r.b) * 1.2, r.id + ' tracé cohérent');
+    assert.deepStrictEqual([r.path[0][0], r.path[0][1]], [r.a.lat, r.a.lon]);
   });
 });
 
@@ -28,7 +29,7 @@ test('type de vent par rapport à la côte (Sète-Palavas, large au SE)', () => 
   assert.strictEqual(D.shoreKind(90, 144).code, 'sideon');    // E : un peu de mer
 });
 
-test('SO 20 nd, bosses 1 m 6 s dans le sens du vent : très bon, de Sète vers Palavas', () => {
+test('SO 20 nd, houle 1 m 6 s dans le sens du vent : très bon, de Frontignan vers Palavas', () => {
   const x = hour(225, 20, 25, sea(1.0, 6, 225));
   assert.strictEqual(x.dir, 'ab');
   assert.ok(x.score >= 8, 'note ' + x.score);
@@ -100,7 +101,7 @@ function fakeOM(points, n, t0, f) {
     return { hourly: Object.assign({ time }, h) };
   });
 }
-test('run() de bout en bout : SO établi le jour 2 → créneau Sète → Palavas', () => {
+test('run() de bout en bout : SO établi le jour 2 → créneau Frontignan → Palavas', () => {
   const t0 = Date.UTC(2026, 10, 10, 0);
   const pts = D.queryPoints(doc.runs, doc.buoys);
   const runPts = pts.filter((p) => !p.id.startsWith('buoy_'));
@@ -125,18 +126,25 @@ test('run() de bout en bout : SO établi le jour 2 → créneau Sète → Palava
   const marine = E.mergeMarine(E.parseOpenMeteoMarine(marineJ, pts.map((p) => p.id)));
   const wind = E.parseOpenMeteoWind(windJ, runPts.map((p) => p.id));
   const res = D.run({ runs: doc.runs, buoys: doc.buoys, marine, wind, buoyObs: {}, now: t0 + 6 * 3600000, hours: 72 });
-  const sp = res.runs.find((r) => r.id === 'sete-palavas');
+  const sp = res.runs.find((r) => r.id === 'frontignan-palavas');
   assert.ok(sp.windows.length >= 1, 'créneau trouvé');
   const w = sp.windows[0];
   assert.strictEqual(w.from, sete.a.name);
   assert.ok(w.mean >= 6, 'note ' + w.mean + ' ' + w.text);
   const peak = w.peak;
   assert.ok(peak.bumpH > 0.9 && peak.cross < 0.15, 'la houle de SE (0,3 m) compte comme mer croisée, la mer du vent porte : ' + JSON.stringify(peak));
-  // plage Sud (face à l'OSO) : le SO y souffle de la mer → pas un downwind le long de la plage
-  const ps = res.runs.find((r) => r.id === 'boucanet-plagesud');
+  // traversée plage Sud → Grande-Motte (large à l'OSO) : le SO y souffle de la mer et dans le mauvais sens
+  const ps = res.runs.find((r) => r.id === 'plagesud-grandemotte');
   const px = ps.rows.find((x) => x.t === peak.t);
   assert.strictEqual(px.shoreCode, 'on', px.shore);
   assert.ok(px.score < 4, 'note ' + px.score);
   const json = D.toJSON(res);
   assert.ok(json.best.length >= 1 && json.runs[0].hours[0].length === json.hourFields.length);
+});
+
+test('parcours à sens unique : plage Sud → Grande-Motte par SE, rien par NO', () => {
+  const r = doc.runs.find((x) => x.id === 'plagesud-grandemotte');
+  const se = hour(135, 20, 24, sea(1, 5.5, 135), r), no = hour(315, 20, 24, sea(0.5, 4, 315), r);
+  assert.strictEqual(se.dir, 'ab'); assert.ok(se.score >= 6, 'SE ' + se.score);
+  assert.strictEqual(no.score, 0); assert.ok(no.flags.some((f) => /sens unique/.test(f)) && !no.roundTrip);
 });

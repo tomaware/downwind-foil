@@ -78,11 +78,11 @@ function markdown(res, out) {
     out.best.forEach((w) => { s += `| ${day(w.start)} ${hh(w.start)} – ${hh(w.end)} | ${w.from} → ${w.to} | **${f1(w.mean)}** (max ${f1(w.peak)}) | ${w.text} |\n`; });
     s += '\n';
   }
-  s += '## Par parcours, toutes les 3 h (de jour)\n\nVent en nœuds (rafales), d\'où il vient · bosses = mer qui avance avec le vent (hauteur · période · espacement) · ⚠ = vent de terre ou side-off.\n\n';
+  s += '## Par parcours, toutes les 3 h (de jour)\n\nVent en nœuds (rafales), d\'où il vient · houle = mer qui avance avec le vent (hauteur · période · espacement des vagues) · ⚠ = vent de terre ou side-off.\n\n';
   res.runs.forEach((r) => {
     s += `### ${r.name} (${r.km} km)\n\n`;
     if (r.nowObs) s += `Bouée ${r.buoy} : ${f1(r.nowObs.hs)} m mesurés à ${hh(r.nowObs.t)} (modèles ×${r.nowObs.ratio.toFixed(2)} sur les premières heures).\n\n`;
-    s += '| Heure | Vent | Côte | Sens | Bosses | Note |\n|---|---|---|---|---|---|\n';
+    s += '| Heure | Vent | Côte | Sens | Houle | Note |\n|---|---|---|---|---|---|\n';
     let last = '';
     r.rows.filter((x) => !x.missing && x.day && x.leadH > -1 && new Date(x.t).getUTCHours() % 3 === 0).forEach((x) => {
       const d = day(x.t);

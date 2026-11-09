@@ -97,7 +97,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 <div class="about">
   <b>Carte.</b> Chaque parcours est coloré par sa note à l'heure choisie (curseur), la flèche donne le sens du downwind, ⚠ et pointillés = vent de terre ou side-off. Touche un parcours pour son détail.<br>
   <b>Lecture.</b> Chaque case = une heure de jour (7 h → 19 h), colorée par la note sur 10 pour ton niveau ; la flèche indique le sens du downwind. Hachures = vent de terre ou side-off (⚠ dérive au large). Touche un parcours pour le détail toutes les 3 h.<br>
-  <b>Note.</b> Vent (idéal selon le niveau) × orientation à la côte (side-shore idéal) × axe du parcours × régularité, puis la mer : bosses qui avancent avec le vent, hauteur 0,7-1,5 m, période = espacement (3 s ≈ 15 m freine, 6 s ≈ 55 m très bien, ≥ 8 s idéal), mer croisée pénalisée.<br>
+  <b>Note.</b> Vent (idéal selon le niveau) × orientation à la côte (side-shore idéal) × axe du parcours × régularité, puis la mer : houle qui avance avec le vent, hauteur 0,7-1,5 m, période = espacement (3 s ≈ 15 m freine, 6 s ≈ 55 m très bien, ≥ 8 s idéal), mer croisée pénalisée.<br>
   <b>Données.</b> Vent AROME / ARPEGE (Météo-France) et ECMWF ; mer : 5 modèles de vagues pondérés par leur erreur aux bouées Candhis (Sète, Espiguette, Leucate), recalés sur la dernière mesure. Mis à jour toutes les heures. À utiliser avec ton jugement : vérifie le vent réel avant de partir.
 </div>
 </main>
@@ -141,7 +141,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 
   function cond(o) {
     var s = f0(o.kn) + ' nd ' + bous(o.windFrom) + (o.gust ? ' (raf. ' + o.gust + ')' : '') + ' · ' + SHORE[o.shore];
-    if (o.bumpH != null) s += ' · bosses ' + f1(o.bumpH) + ' m' + (o.bumpT ? ' ' + f0(o.bumpT) + ' s' : '');
+    if (o.bumpH != null) s += ' · houle ' + f1(o.bumpH) + ' m' + (o.bumpT ? ' ' + f0(o.bumpT) + ' s' : '');
     return s;
   }
 
@@ -179,7 +179,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
         h += '<div class="chips"><span class="chip">' + arrow(cur.windFrom + 180) + ' ' + bous(cur.windFrom) + ' raf. ' + f0(cur.gust) + '</span>' +
           '<span class="chip' + (warn ? ' warn' : '') + '">' + (warn ? '⚠ ' : '') + SHORE[cur.shore] + '</span>' +
           '<span class="chip">' + arrow(travel(r, cur)) + ' vers ' + cur.toward + '</span>' +
-          (cur.bumpH != null ? '<span class="chip">bosses ' + f1(cur.bumpH) + ' m · ' + f0(cur.bumpT) + ' s' + (cur.cross > 0.4 ? ' · mer croisée' : '') + '</span>' : '') + '</div>';
+          (cur.bumpH != null ? '<span class="chip">houle ' + f1(cur.bumpH) + ' m · ' + f0(cur.bumpT) + ' s' + (cur.cross > 0.4 ? ' · mer croisée' : '') + '</span>' : '') + '</div>';
       }
       // frise 4 jours, 7 h → 19 h
       var byDay = {}, order = [];
@@ -201,7 +201,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       for (var q = 7; q <= 19; q++) h += '<div>' + ((q - 7) % 3 === 0 ? q + 'h' : '') + '</div>';
       h += '</div></div></div>';
       // détail toutes les 3 h, de jour
-      h += '<div class="det"><table><tr><th>Heure</th><th>Vent (raf.)</th><th>Côte</th><th>Sens</th><th>Bosses</th><th>Note</th></tr>';
+      h += '<div class="det"><table><tr><th>Heure</th><th>Vent (raf.)</th><th>Côte</th><th>Sens</th><th>Houle</th><th>Note</th></tr>';
       var jp = '';
       rows.forEach(function (o) {
         var p = P(o.t); if (p.h % 3 !== 0 || p.h < 6 || p.h > 21 || o.t < now - 36e5) return;
@@ -254,7 +254,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       var off = o.shore === 'off' || o.shore === 'sideoff';
       var line = L.polyline(r.coords, { color: mcol(o.score), weight: 8, opacity: o.day ? 0.95 : 0.5, dashArray: off ? '8 8' : null, lineCap: 'round' }).addTo(MAP);
       // pastille au large du milieu du parcours (évite que les parcours voisins se chevauchent)
-      var mid = [(r.coords[0][0] + r.coords[1][0]) / 2, (r.coords[0][1] + r.coords[1][1]) / 2];
+      var cs = r.coords, mi = Math.floor((cs.length - 1) / 2), mid = cs.length % 2 ? cs[mi].slice() : [(cs[mi][0] + cs[mi + 1][0]) / 2, (cs[mi][1] + cs[mi + 1][1]) / 2];
       var lb = r.label || { bearing: r.normal, km: 2.5 }, km = lb.km, rad = lb.bearing * Math.PI / 180;
       mid = [mid[0] + km / 111.2 * Math.cos(rad), mid[1] + km / (111.2 * Math.cos(mid[0] * Math.PI / 180)) * Math.sin(rad)];
       var html = '<div class="mk"><div class="b"><span class="s" style="background:' + mcol(o.score) + '">' + f0(o.score) + '</span>' +
@@ -266,7 +266,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       line.bindTooltip(tip); mk.bindTooltip(tip);
       line.on('click', go); mk.on('click', go);
       LAYERS.push(line, mk);
-      [r.coords[0], r.coords[1]].forEach(function (c) { LAYERS.push(L.circleMarker(c, { radius: 4, color: '#0f1c2a', weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(MAP)); });
+      [r.coords[0], r.coords[r.coords.length - 1]].forEach(function (c) { LAYERS.push(L.circleMarker(c, { radius: 4, color: '#0f1c2a', weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(MAP)); });
     });
   }
   function defaultTime() {
