@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : lundi 9 novembre 2026 à 22:10 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : lundi 9 novembre 2026 à 22:47 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -64,7 +64,7 @@ Bouée 03001 : 2,4 m mesurés à 21:30 (modèles ×0.92 sur les premières heure
 | mer. 11 10 h | 7 (11) NNE | ⚠ de terre | → Le Grau-du-Roi (rive droite) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 13 h | 5 (7) NNO | ⚠ de terre | → Le Grau-du-Roi (rive droite) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 16 h | 3 (6) ENE | ⚠ de terre | → La Grande-Motte | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
-| jeu. 12 10 h | 14 (22) SE | side-shore | → La Grande-Motte | 1,6 m · 5 s · ~46 m | ⚪ 4,0 |
+| jeu. 12 10 h | 14 (22) SE | side-shore | → La Grande-Motte | 1,6 m · 5 s · ~46 m | ⚪ 3,9 |
 | 13 h | 10 (18) O | side-shore | → Le Grau-du-Roi (rive droite) | 0,0 m ·  | ⚪ 0,0 |
 | 16 h | 11 (18) O | side-on | → Le Grau-du-Roi (rive droite) | 0,0 m · 2 s · ~8 m | ⚪ 0,0 |
 | ven. 13 10 h | 12 (16) NNO | ⚠ side-off | → Le Grau-du-Roi (rive droite) | 0,2 m · 3 s · ~17 m | ⚪ 0,0 |
@@ -106,10 +106,10 @@ Bouée 01101 : 1,7 m mesurés à 21:30 (modèles ×0.95 sur les premières heure
 | mer. 11 10 h | 4 (7) NO | ⚠ side-off | → Le Barcarès | 0,0 m · 2 s · ~4 m | ⚪ 0,0 |
 | 13 h | 3 (5) NNE | side-shore | → Le Barcarès | 0,0 m ·  | ⚪ 0,0 |
 | 16 h | 5 (8) ENE | de mer | → Le Barcarès | 0,2 m · 4 s · ~22 m | ⚪ 0,0 |
-| jeu. 12 10 h | 14 (22) O | ⚠ de terre | → La Franqui | 0,0 m ·  | ⚪ 0,0 |
-| 13 h | 17 (31) ONO | ⚠ de terre | → Le Barcarès | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
+| jeu. 12 10 h | 14 (22) O | ⚠ de terre | → Le Barcarès | 0,0 m ·  | ⚪ 0,0 |
+| 13 h | 18 (32) ONO | ⚠ de terre | → Le Barcarès | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
 | 16 h | 16 (27) NO | ⚠ de terre | → Le Barcarès | 0,2 m · 2 s · ~7 m | ⚪ 0,0 |
-| ven. 13 10 h | 19 (19) ONO | ⚠ de terre | → Le Barcarès | 1,3 m · 4 s · ~29 m | ⚪ 0,0 |
+| ven. 13 10 h | 19 (20) ONO | ⚠ de terre | → Le Barcarès | 1,3 m · 4 s · ~29 m | ⚪ 0,0 |
 | 13 h | 18 (22) NO | ⚠ de terre | → Le Barcarès | 1,3 m · 4 s · ~29 m | ⚪ 0,1 |
 | 16 h | 17 (22) NO | ⚠ side-off | → Le Barcarès | 1,2 m · 4 s · ~29 m | ⚪ 0,5 |
 
