@@ -103,8 +103,8 @@
       "name": "Plage Sud → La Grande-Motte",
       "a": {
         "name": "Plage Sud (Port Camargue)",
-        "lat": 43.5055,
-        "lon": 4.115
+        "lat": 43.506,
+        "lon": 4.1095
       },
       "b": {
         "name": "La Grande-Motte",
@@ -113,8 +113,8 @@
       },
       "path": [
         [
-          43.5055,
-          4.115
+          43.506,
+          4.1095
         ],
         [
           43.524,
