@@ -267,7 +267,7 @@
     });
     var lvl = LEVELS[cfg.level] || LEVELS.intermediaire;
     // aller-retour : remonter le vent puis redescendre, possible si le vent est le long de la côte et pas trop fort
-    var roundTrip = !wrongWay && (sk.code === 'side' || sk.code === 'sideon') && x.kn >= lvl.wind[0] && x.kn <= cfg.upwindMaxKn;
+    var roundTrip = !x.oneWay && (sk.code === 'side' || sk.code === 'sideon') && x.kn >= lvl.wind[0] && x.kn <= cfg.upwindMaxKn;
     return {
       t: x.t, kn: Math.round(x.kn * 10) / 10, gust: isNum(x.gkn) ? Math.round(x.gkn) : null, windFrom: Math.round(x.windFrom),
       shore: sk.kind, shoreCode: sk.code, dir: dir, along: Math.round(along), agree: Math.round(x.agree * 100) / 100,
