@@ -10,7 +10,7 @@ Module de prévision **vent + mer au large** pour le downwind en wing foil : rem
 |---|---|---|
 | Sète ↔ Palavas | 27 km | SO → vers Palavas · NE / ENE → vers Sète |
 | Palavas ↔ La Grande-Motte | 10 km | SO → vers la Grande-Motte · ENE → vers Palavas |
-| La Grande-Motte ↔ L'Espiguette | 9 km | SE → vers la Grande-Motte · NO (de terre !) → vers l'Espiguette |
+| La Grande-Motte ↔ Le Grau-du-Roi | 5 km | SE / ESE → vers la Grande-Motte · O / ONO → vers le Grau-du-Roi |
 | Gruissan ↔ Port-la-Nouvelle | 10 km | NNE → vers Port-la-Nouvelle · SSO → vers Gruissan |
 | La Franqui ↔ Le Barcarès | 16 km | N → vers le Barcarès · S → vers la Franqui |
 
