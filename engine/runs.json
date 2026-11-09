@@ -1,0 +1,157 @@
+{
+  "_doc": "Parcours de downwind le long de la côte. a / b = extrémités (sur l'eau, ~300 m du bord) ; coast = cap de la côte de a vers b (°) ; normal = direction du large vue de la plage (°). Le sens du parcours (a→b ou b→a) est choisi heure par heure selon le vent. buoy = bouée Candhis qui sert à vérifier les modèles de vagues ; access = mises à l'eau / sorties possibles. Coordonnées approximatives : à corriger avec ta connaissance du terrain (confidence).",
+  "runs": [
+    {
+      "id": "sete-palavas",
+      "name": "Sète ↔ Palavas",
+      "a": {
+        "name": "Sète (Lido)",
+        "lat": 43.3855,
+        "lon": 3.656
+      },
+      "b": {
+        "name": "Palavas",
+        "lat": 43.524,
+        "lon": 3.927
+      },
+      "coast": 54,
+      "normal": 144,
+      "km": 26,
+      "buoy": "03404",
+      "access": [
+        "Sète Lido",
+        "Frontignan plage",
+        "Les Aresquiers",
+        "Maguelone",
+        "Palavas"
+      ],
+      "confidence": "medium",
+      "notes": "Long run par SO (de Sète vers Palavas) ou par NE / E (de Palavas vers Sète). Plages sauvages entre Aresquiers et Maguelone : peu de sorties."
+    },
+    {
+      "id": "palavas-grandemotte",
+      "name": "Palavas ↔ La Grande-Motte",
+      "a": {
+        "name": "Palavas",
+        "lat": 43.524,
+        "lon": 3.927
+      },
+      "b": {
+        "name": "La Grande-Motte (Grand Travers)",
+        "lat": 43.5555,
+        "lon": 4.045
+      },
+      "coast": 70,
+      "normal": 160,
+      "km": 11,
+      "buoy": "03001",
+      "access": [
+        "Palavas",
+        "Carnon",
+        "Petit Travers",
+        "Grand Travers"
+      ],
+      "confidence": "medium",
+      "notes": "Par SO de Palavas vers la Grande-Motte, par E / NE en sens inverse. Digues et ports (Carnon) à contourner au large."
+    },
+    {
+      "id": "grandemotte-espiguette",
+      "name": "La Grande-Motte ↔ L'Espiguette",
+      "a": {
+        "name": "La Grande-Motte",
+        "lat": 43.5555,
+        "lon": 4.08
+      },
+      "b": {
+        "name": "L'Espiguette",
+        "lat": 43.49,
+        "lon": 4.135
+      },
+      "coast": 145,
+      "normal": 235,
+      "km": 9,
+      "buoy": "03001",
+      "access": [
+        "La Grande-Motte",
+        "Le Grau-du-Roi (rive droite)",
+        "Port Camargue",
+        "L'Espiguette"
+      ],
+      "confidence": "low",
+      "notes": "Fond de baie d'Aigues-Mortes : par SE / S de l'Espiguette vers la Grande-Motte. Passes du Grau-du-Roi et de Port Camargue à contourner."
+    },
+    {
+      "id": "gruissan-portlanouvelle",
+      "name": "Gruissan ↔ Port-la-Nouvelle",
+      "a": {
+        "name": "Gruissan (Chalets)",
+        "lat": 43.095,
+        "lon": 3.115
+      },
+      "b": {
+        "name": "Port-la-Nouvelle",
+        "lat": 43.015,
+        "lon": 3.065
+      },
+      "coast": 205,
+      "normal": 115,
+      "km": 10,
+      "buoy": "01101",
+      "access": [
+        "Gruissan",
+        "Saint-Pierre-la-Mer",
+        "Les Ayguades",
+        "Port-la-Nouvelle"
+      ],
+      "confidence": "low",
+      "notes": "Par N / NE de Gruissan vers Port-la-Nouvelle, par S / SE en sens inverse. Tramontane (NO) : de terre, dangereuse."
+    },
+    {
+      "id": "leucate-barcares",
+      "name": "La Franqui ↔ Le Barcarès",
+      "a": {
+        "name": "La Franqui",
+        "lat": 42.935,
+        "lon": 3.04
+      },
+      "b": {
+        "name": "Le Barcarès",
+        "lat": 42.79,
+        "lon": 3.045
+      },
+      "coast": 178,
+      "normal": 88,
+      "km": 16,
+      "buoy": "01101",
+      "access": [
+        "La Franqui",
+        "Leucate plage",
+        "Port Leucate",
+        "Le Barcarès"
+      ],
+      "confidence": "medium",
+      "notes": "Par N / NNO (tramontane bien orientée) de la Franqui vers le Barcarès : side-off, experts et à plusieurs ; par S / SE (marin) en sens inverse."
+    }
+  ],
+  "buoys": [
+    {
+      "code": "03404",
+      "name": "Sète",
+      "lat": 43.3713,
+      "lon": 3.7771
+    },
+    {
+      "code": "03001",
+      "name": "Espiguette",
+      "lat": 43.411,
+      "lon": 4.1625
+    },
+    {
+      "code": "01101",
+      "name": "Leucate",
+      "lat": 42.9167,
+      "lon": 3.125
+    }
+  ],
+  "_doc_buoys": "Bouées au large (Candhis) qui servent à vérifier les modèles de vagues. Les mesures viennent de l'historique de Super Prévi Surf (dépôt public), pour ne pas consommer le quota Candhis une seconde fois."
+}

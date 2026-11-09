@@ -1,0 +1,10 @@
+{
+  "name": "downwind-foil",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prévision downwind wing foil (vent + mer au large) — Golfe du Lion",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "build": "node collector/build.js"
+  }
+}

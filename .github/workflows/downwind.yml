@@ -1,0 +1,42 @@
+name: Prévision downwind
+
+on:
+  schedule:
+    - cron: "23 * * * *"        # toutes les heures (après Super Prévi Surf, qui met à jour les bouées vers :07)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: prevision-downwind
+  cancel-in-progress: false
+
+jobs:
+  prevision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tests du moteur
+        run: node --test tests/*.test.js
+      - name: Calcul de la prévision
+        run: node collector/build.js
+      - name: Publier data/downwind.json et data/PREVISION.md
+        run: |
+          git config user.name "prevision-bot"
+          git config user.email "prevision-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && exit 0
+          git commit -qm "prévision : $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do
+            git push -q origin HEAD:main && exit 0
+            git pull -q --rebase -X theirs origin main || { git rebase --abort; git reset -q --soft origin/main; git commit -qm "prévision : $(date -u +%Y-%m-%dT%H:%MZ)"; }
+            sleep $((i * 5))
+          done
+          echo "::warning::prévision non publiée après 3 essais"
