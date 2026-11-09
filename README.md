@@ -12,7 +12,7 @@ Module de prévision **vent + mer au large** pour le downwind en wing foil : rem
 | Palavas ↔ La Grande-Motte | 11 km | SO → vers la Grande-Motte · E / ENE → vers Palavas |
 | Plage Sud → La Grande-Motte (sens unique) | 6 km | SE / ESE, en traversant la baie d'Aigues-Mortes |
 
-Les tracés passent à ~800 m du bord ; les modèles de mer sont lus à 2 km du bord.
+Les tracés passent à ~1,2 km du bord ; les modèles de mer sont lus à 2 km du bord.
 
 Les coordonnées, l'orientation de la côte (`normal` = direction du large) et les sorties sont **approximatives** : à corriger avec ta connaissance du terrain. Ajouter un parcours = ajouter un bloc dans `runs.json`.
 

@@ -96,8 +96,8 @@
     runs.forEach(function (r) {
       [1 / 3, 2 / 3].forEach(function (f, i) {
         var q = along(r, f);
-        // le tracé est déjà ~0,8 km au large : on va chercher la mer à offshoreKm du bord
-        var p = E.offsetPoint(q.lat, q.lon, r.normal, r.path ? Math.max(0.5, cfg.offshoreKm - 0.8) : cfg.offshoreKm);
+        // le tracé est déjà ~1,2 km au large : on va chercher la mer à offshoreKm du bord
+        var p = E.offsetPoint(q.lat, q.lon, r.normal, r.path ? Math.max(0.5, cfg.offshoreKm - 1.2) : cfg.offshoreKm);
         pts.push({ id: r.id + '_' + i, run: r.id, lat: p.lat, lon: p.lon });
       });
     });

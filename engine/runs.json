@@ -1,39 +1,39 @@
 {
-  "_doc": "Parcours de downwind. a / b = départ et arrivée (sur l'eau) ; path = tracé au large (≈ 800 m du bord) ; normal = direction du large vue de la plage (°) ; oneWay = seulement de a vers b. Le sens (a→b ou b→a) est sinon choisi heure par heure selon le vent. buoy = bouée Candhis qui vérifie les modèles de vagues ; access = mises à l'eau / sorties. Coordonnées approximatives : à corriger avec ta connaissance du terrain.",
+  "_doc": "Parcours de downwind. a / b = départ et arrivée (sur l'eau) ; path = tracé au large (≈ 1,2 km du bord) ; normal = direction du large vue de la plage (°) ; oneWay = seulement de a vers b. Le sens (a→b ou b→a) est sinon choisi heure par heure selon le vent. buoy = bouée Candhis qui vérifie les modèles de vagues ; access = mises à l'eau / sorties. Coordonnées approximatives : à corriger avec ta connaissance du terrain.",
   "runs": [
     {
       "id": "frontignan-palavas",
       "name": "Frontignan ↔ Palavas",
       "a": {
         "name": "Frontignan plage",
-        "lat": 43.4277,
-        "lon": 3.7658
+        "lat": 43.4248,
+        "lon": 3.7687
       },
       "b": {
         "name": "Palavas",
-        "lat": 43.5222,
-        "lon": 3.9328
+        "lat": 43.5193,
+        "lon": 3.9357
       },
       "path": [
         [
-          43.4277,
-          3.7658
+          43.4248,
+          3.7687
         ],
         [
-          43.4532,
-          3.8128
+          43.4503,
+          3.8157
         ],
         [
-          43.4772,
-          3.8478
+          43.4743,
+          3.8507
         ],
         [
-          43.5027,
-          3.8768
+          43.4998,
+          3.8797
         ],
         [
-          43.5222,
-          3.9328
+          43.5193,
+          3.9357
         ]
       ],
       "normal": 144,
@@ -57,30 +57,30 @@
       "name": "Palavas ↔ La Grande-Motte",
       "a": {
         "name": "Palavas",
-        "lat": 43.5212,
-        "lon": 3.9304
+        "lat": 43.5179,
+        "lon": 3.9321
       },
       "b": {
         "name": "La Grande-Motte (Grand Travers)",
-        "lat": 43.5532,
-        "lon": 4.0484
+        "lat": 43.5499,
+        "lon": 4.0501
       },
       "path": [
         [
-          43.5212,
-          3.9304
+          43.5179,
+          3.9321
         ],
         [
-          43.5382,
-          3.9784
+          43.5349,
+          3.9801
         ],
         [
-          43.5492,
-          4.0134
+          43.5459,
+          4.0151
         ],
         [
-          43.5532,
-          4.0484
+          43.5499,
+          4.0501
         ]
       ],
       "normal": 160,
@@ -103,8 +103,8 @@
       "name": "Plage Sud → La Grande-Motte",
       "a": {
         "name": "Plage Sud (Port Camargue)",
-        "lat": 43.506,
-        "lon": 4.122
+        "lat": 43.5055,
+        "lon": 4.115
       },
       "b": {
         "name": "La Grande-Motte",
@@ -113,16 +113,16 @@
       },
       "path": [
         [
-          43.506,
-          4.122
+          43.5055,
+          4.115
         ],
         [
           43.524,
-          4.113
+          4.11
         ],
         [
           43.542,
-          4.099
+          4.096
         ],
         [
           43.55,
