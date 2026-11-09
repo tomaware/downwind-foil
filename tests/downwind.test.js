@@ -14,7 +14,7 @@ const hour = (windFrom, kn, gkn, s, r) => D.score({ t: 0, windFrom, kn, gkn, agr
 test('géométrie des parcours : la normale est perpendiculaire à la côte et pointe vers la mer', () => {
   doc.runs.forEach((r) => {
     const h = D.bearing(r.a, r.b);
-    assert.ok(Math.abs(Math.abs(E.angDiff(r.normal, h)) - 90) < 8, r.id + ' normale ⟂ côte');
+    if (!r.crossing) assert.ok(Math.abs(Math.abs(E.angDiff(r.normal, h)) - 90) < 8, r.id + ' normale ⟂ côte');
     assert.ok(D.pathKm(r) >= D.distKm(r.a, r.b) - 1e-9 && D.pathKm(r) < D.distKm(r.a, r.b) * 1.2, r.id + ' tracé cohérent');
     assert.deepStrictEqual([r.path[0][0], r.path[0][1]], [r.a.lat, r.a.lon]);
   });
@@ -147,4 +147,5 @@ test('parcours à sens unique : plage Sud → Grande-Motte par SE, rien par NO',
   const se = hour(135, 20, 24, sea(1, 5.5, 135), r), no = hour(315, 20, 24, sea(0.5, 4, 315), r);
   assert.strictEqual(se.dir, 'ab'); assert.ok(se.score >= 6, 'SE ' + se.score);
   assert.strictEqual(no.score, 0); assert.ok(no.flags.some((f) => /sens unique/.test(f)) && !no.roundTrip);
+  assert.ok(no.flags.some((f) => /side-off|terre/.test(f)), 'NO : dérive vers le large signalée');
 });

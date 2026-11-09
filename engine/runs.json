@@ -1,5 +1,5 @@
 {
-  "_doc": "Parcours de downwind. a / b = départ et arrivée (sur l'eau) ; path = tracé au large (≈ 1,2 km du bord) ; normal = direction du large vue de la plage (°) ; oneWay = seulement de a vers b. Le sens (a→b ou b→a) est sinon choisi heure par heure selon le vent. buoy = bouée Candhis qui vérifie les modèles de vagues ; access = mises à l'eau / sorties. Coordonnées approximatives : à corriger avec ta connaissance du terrain.",
+  "_doc": "Parcours de downwind. a / b = départ et arrivée (sur l'eau) ; path = tracé au large (≈ 1,2 km du bord) ; normal = direction du large vue de la plage (°) ; oneWay = seulement de a vers b. Le sens (a→b ou b→a) est sinon choisi heure par heure selon le vent. buoy = bouée Candhis qui vérifie les modèles de vagues ; access = mises à l'eau / sorties. Coordonnées approximatives : à corriger avec ta connaissance du terrain. crossing = traversée de baie : normal y désigne la direction du large (là où l'on dériverait), pas la perpendiculaire au tracé.",
   "runs": [
     {
       "id": "frontignan-palavas",
@@ -129,7 +129,7 @@
           4.085
         ]
       ],
-      "normal": 248,
+      "normal": 205,
       "oneWay": true,
       "buoy": "03001",
       "access": [
@@ -143,7 +143,8 @@
       "label": {
         "bearing": 248,
         "km": 2.5
-      }
+      },
+      "crossing": true
     }
   ],
   "buoys": [
