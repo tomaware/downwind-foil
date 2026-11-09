@@ -129,7 +129,7 @@
           4.085
         ]
       ],
-      "normal": 237,
+      "normal": 248,
       "oneWay": true,
       "buoy": "03001",
       "access": [
@@ -141,7 +141,7 @@
       "confidence": "low",
       "notes": "Sens unique, par SE / ESE : de la plage Sud vers la Grande-Motte en traversant la baie d'Aigues-Mortes, au large des passes de Port Camargue et du Grau-du-Roi. Sortie possible au Boucanet.",
       "label": {
-        "bearing": 237,
+        "bearing": 248,
         "km": 2.5
       }
     }
