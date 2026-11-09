@@ -34,20 +34,31 @@ async function main() {
   const cfg = readJSON(path.join(ROOT, 'engine', 'config.json'), {});
   const pts = D.queryPoints(doc.runs, doc.buoys, cfg);
   const runPts = pts.filter((p) => !p.id.startsWith('buoy_'));
+  const windPts = runPts.concat(D.windPoints(cfg));   // + grille de la carte + spots de la super prévision
   const offline = process.argv.includes('--offline') ? readJSON(process.argv[process.argv.indexOf('--offline') + 1]) : null;
-  let marineJ, windJ, hist;
-  if (offline) ({ marineJ, windJ, hist } = offline);
+  let marineJ, windJ, hist, superPrev = null;
+  if (offline) ({ marineJ, windJ, hist, superPrev } = offline);
   else {
     marineJ = await getJSON(E.openMeteoMarineURL(pts, { pastDays: 3, forecastDays: 5 }));
-    windJ = await getJSON(E.openMeteoWindURL(runPts, { pastDays: 1, forecastDays: 5 }));
+    windJ = await getJSON(E.openMeteoWindURL(windPts, { pastDays: 1, forecastDays: 5 }));
+    // Vent corrigé de la super prévision (+ relevés Winds-Up, utilisés seulement pour recaler, jamais publiés)
+    const sp = (process.env.SUPER_PREVISION_URL || '').trim();
+    if (sp) {
+      try {
+        const j = await getJSON(sp + (sp.includes('?') ? '&' : '?') + 'action=widget', 2);
+        if (j && j.spots) superPrev = { spots: j.spots, live: j.live && j.live.spots ? { spots: j.live.spots } : null };
+        else console.warn('[build] super prévision : réponse inattendue', JSON.stringify(j).slice(0, 120));
+      } catch (e) { console.warn('[build] super prévision indisponible :', e.message); }
+    } else console.log('[build] super prévision : pas de lien (secret SUPER_PREVISION_URL) → vent AROME / ECMWF brut');
     try { hist = await getJSON(BUOYS_URL); } catch (e) { console.warn('[build] bouées indisponibles :', e.message); hist = {}; }
   }
   const marine = E.mergeMarine(E.parseOpenMeteoMarine(marineJ, pts.map((p) => p.id)));
-  const wind = E.parseOpenMeteoWind(windJ, runPts.map((p) => p.id));
+  const wind = E.parseOpenMeteoWind(windJ, windPts.map((p) => p.id));
   const buoyObs = {};
   Object.keys(hist || {}).forEach((c) => { buoyObs[c] = hist[c].filter((o) => o.hs != null); });
   const now = offline && offline.now ? offline.now : Date.now();
-  const res = D.run({ runs: doc.runs, buoys: doc.buoys, marine, wind, buoyObs, now, cfg, hours: 96 });
+  const res = D.run({ runs: doc.runs, buoys: doc.buoys, marine, wind, buoyObs, now, cfg, hours: 96, superPrev });
+  console.log('[build] correction du vent : ' + (res.correction.length ? res.correction.map((c) => `${c.spot} ${c.hours} h${c.live ? ' + relevé en direct' : ''}`).join(' ; ') : 'aucune') + ` ; grille ${res.grid.times.length} h`);
 
   const waveModels = [...new Set(Object.values(marine).flatMap((p) => p.series.flatMap((s) => Object.keys(s.models))))];
   const windModels = [...new Set(Object.values(wind).flatMap((p) => Object.keys(p.models)))];

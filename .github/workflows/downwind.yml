@@ -31,6 +31,8 @@ jobs:
       - name: Tests du moteur
         run: node --test tests/*.test.js
       - name: Calcul de la prévision
+        env:
+          SUPER_PREVISION_URL: ${{ secrets.SUPER_PREVISION_URL }}   # lien de la super prévision vent (avec sa clé)
         run: node collector/build.js
       - name: Publier data/downwind.json et data/PREVISION.md
         run: |

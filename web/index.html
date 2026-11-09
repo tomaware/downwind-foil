@@ -78,6 +78,12 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 .mk .w{font-weight:600;color:#3a4a5a}
 .mk .ar{display:inline-block;font-size:13px}
 .leaflet-container{font:inherit}
+.wa{transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;pointer-events:none;color:#fff;font:700 10px/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;text-shadow:0 0 3px rgba(0,0,0,.8),0 0 1px #000;width:max-content}
+.wa i{font-style:normal;font-size:15px;line-height:15px;display:block}
+.wopt{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);margin-left:auto;white-space:nowrap;cursor:pointer}
+.wleg{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:11px;color:var(--mute)}
+.wleg .g{flex:1;height:8px;border-radius:4px}
+.corr{font-size:12px;color:var(--mute);margin-top:6px}
 .err{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:20px}
 </style>
 </head>
@@ -88,7 +94,8 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 <div class="lvinfo" id="lvinfo"></div>
 <h2>Carte</h2>
 <div id="map"></div>
-<div class="tbar"><div class="tdays" id="tdays"></div><div class="trow"><input type="range" id="thr" min="7" max="19" step="1"><span class="tlab" id="tlab"></span></div></div>
+<div class="tbar"><div class="tdays" id="tdays"></div><div class="trow"><input type="range" id="thr" min="7" max="19" step="1"><span class="tlab" id="tlab"></span><label class="wopt"><input type="checkbox" id="wshow" checked> vent</label></div>
+<div class="wleg" id="wleg"></div><div class="corr" id="corr"></div></div>
 <h2>Meilleurs créneaux de jour</h2>
 <div class="cren" id="cren"></div>
 <h2>Parcours</h2>
@@ -225,6 +232,39 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
   var MAP = null, LAYERS = [], SEL = null, DAYS = [];
   var MC = ['#8f9aa6', '#6f96bd', '#2f95b0', '#2fa36b', '#1f8a4c', '#e2a325'];
   function mcol(s) { return MC[s == null ? 0 : s < 2 ? 0 : s < 4 ? 1 : s < 5 ? 2 : s < 7 ? 3 : s < 8.5 ? 4 : 5]; }
+  // couleurs du vent (nœuds), proches de celles de Windy
+  var WC = [[0, [98, 113, 183]], [4, [57, 97, 159]], [7, [74, 148, 169]], [10, [77, 141, 123]], [13, [83, 165, 83]], [16, [53, 159, 53]], [19, [167, 157, 81]], [22, [159, 127, 58]], [25, [161, 108, 92]], [28, [129, 58, 78]], [32, [175, 80, 136]], [36, [117, 74, 147]], [45, [109, 97, 163]]];
+  function wcol(k) {
+    if (k == null) return [0, 0, 0, 0];
+    for (var i = 1; i < WC.length; i++) if (k <= WC[i][0]) { var a = WC[i - 1], b = WC[i], f = (k - a[0]) / (b[0] - a[0]); return [0, 1, 2].map(function (c) { return Math.round(a[1][c] + f * (b[1][c] - a[1][c])); }).concat(255); }
+    return WC[WC.length - 1][1].concat(255);
+  }
+  var WSHOW = true;
+  try { WSHOW = localStorage.getItem('dw-wind') !== '0'; } catch (e) {}
+  function windLayers(t) {
+    var G = D.grid; if (!G || !WSHOW) return [];
+    var gi = G.times.indexOf(t); if (gi < 0) return [];
+    var kn = G.kn[gi], dir = G.dir[gi], nl = G.n[0], nc = G.n[1], out = [];
+    var at = function (i, j) { return kn[i * nc + j]; };
+    // fond coloré : interpolation bilinéaire de la vitesse sur la grille
+    var W = 180, H = 120, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    var cx = cv.getContext('2d'), img = cx.createImageData(W, H);
+    for (var y = 0; y < H; y++) for (var x = 0; x < W; x++) {
+      var fi = (1 - y / (H - 1)) * (nl - 1), fj = x / (W - 1) * (nc - 1), i0 = Math.min(nl - 2, Math.floor(fi)), j0 = Math.min(nc - 2, Math.floor(fj)), di = fi - i0, dj = fj - j0;
+      var v = [at(i0, j0), at(i0, j0 + 1), at(i0 + 1, j0), at(i0 + 1, j0 + 1)];
+      if (v.some(function (q) { return q == null; })) continue;
+      var k = v[0] * (1 - di) * (1 - dj) + v[1] * (1 - di) * dj + v[2] * di * (1 - dj) + v[3] * di * dj;
+      var c = wcol(k), o = (y * W + x) * 4; img.data[o] = c[0]; img.data[o + 1] = c[1]; img.data[o + 2] = c[2]; img.data[o + 3] = 255;
+    }
+    cx.putImageData(img, 0, 0);
+    out.push(L.imageOverlay(cv.toDataURL(), [[G.lats[0], G.lons[0]], [G.lats[nl - 1], G.lons[nc - 1]]], { opacity: 0.55, interactive: false }).addTo(MAP));
+    // flèches : où va le vent, et sa force
+    for (var i = 0; i < nl; i++) for (var j = 0; j < nc; j++) {
+      var kk = at(i, j), d = dir[i * nc + j]; if (kk == null || d == null) continue;
+      out.push(L.marker([G.lats[i], G.lons[j]], { interactive: false, keyboard: false, icon: L.divIcon({ className: '', iconSize: [0, 0], html: '<div class="wa"><i style="transform:rotate(' + Math.round(d + 180) + 'deg)">↑</i>' + Math.round(kk) + '</div>' }) }).addTo(MAP));
+    }
+    return out;
+  }
   function hourAt(r, t) { for (var i = 0; i < r.hours.length; i++) if (r.hours[i][0] === t) return row(r, r.hours[i]); return null; }
   function initMap() {
     if (MAP) return;
@@ -237,6 +277,11 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
     // jours disponibles (heures de jour)
     var seen = {};
     D.runs[0].hours.forEach(function (h) { var o = row(D.runs[0], h), p = P(o.t); if (o.t + 36e5 > Date.now() && p.h >= 7 && p.h <= 19 && !seen[p.j]) { seen[p.j] = 1; DAYS.push({ j: p.j, t: o.t }); } });
+    var wc = document.getElementById('wshow'); wc.checked = WSHOW;
+    wc.onchange = function () { WSHOW = wc.checked; try { localStorage.setItem('dw-wind', WSHOW ? '1' : '0'); } catch (e) {} setTime(SEL); };
+    document.getElementById('wleg').innerHTML = 'nd <span class="g" style="background:linear-gradient(90deg,' + WC.filter(function (x) { return x[0] <= 36; }).map(function (x) { return 'rgb(' + x[1].join(',') + ') ' + Math.round(x[0] / 36 * 100) + '%'; }).join(',') + ')"></span> 0 · 10 · 20 · 30+';
+    var cr = D.correction || [];
+    document.getElementById('corr').textContent = cr.length ? 'Vent corrigé par ta super prévision autour de ' + cr.map(function (c) { return c.spot; }).join(' et ') + (cr.some(function (c) { return c.live; }) ? ', recalé sur le vent réel' : '') + '.' : 'Vent : AROME / ECMWF brut (super prévision non branchée).';
     document.getElementById('thr').oninput = function () { var d = DAYS.filter(function (x) { return x.j === P(SEL).j; })[0] || DAYS[0]; setTime(tAt(d.j, +this.value)); };
   }
   function tAt(j, h) { var r = D.runs[0]; for (var i = 0; i < r.hours.length; i++) { var p = P(r.hours[i][0]); if (p.j === j && p.h === h) return r.hours[i][0]; } return null; }
@@ -249,6 +294,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
     document.getElementById('thr').value = p.h;
     document.getElementById('tlab').textContent = p.h + ' h';
     LAYERS.forEach(function (l) { MAP.removeLayer(l); }); LAYERS = [];
+    LAYERS = LAYERS.concat(windLayers(t));
     D.runs.forEach(function (r) {
       var o = hourAt(r, t); if (!o) return;
       var off = o.shore === 'off' || o.shore === 'sideoff';

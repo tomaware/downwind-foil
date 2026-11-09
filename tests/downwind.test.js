@@ -149,3 +149,41 @@ test('parcours à sens unique : plage Sud → Grande-Motte par SE, rien par NO',
   assert.strictEqual(no.score, 0); assert.ok(no.flags.some((f) => /sens unique/.test(f)) && !no.roundTrip);
   assert.ok(no.flags.some((f) => /side-off|terre/.test(f)), 'NO : dérive vers le large signalée');
 });
+
+test('vent corrigé par la super prévision : rapport au spot, recalage Winds-Up, effet limité autour du spot', () => {
+  const t0 = Date.UTC(2026, 10, 12, 6), n = 12;
+  const ws = D.DEFAULT_CONFIG.windSpots;
+  const pts = ws.map((w) => ({ id: 'ws_' + w.id, lat: w.lat, lon: w.lon }));
+  const windJ = fakeOM(pts, n, t0, (p, h) => {
+    Object.values(E.OM_WIND_MODELS).forEach((m) => {
+      h['wind_speed_10m_' + m] = Array(n).fill(16 * 1.852); h['wind_direction_10m_' + m] = Array(n).fill(135); h['wind_gusts_10m_' + m] = Array(n).fill(20 * 1.852);
+    });
+  });
+  const wind = E.parseOpenMeteoWind(windJ, pts.map((p) => p.id));
+  const gm = ws[0].id, pc = ws[1].id;
+  const superPrev = {
+    spots: { [gm]: Array.from({ length: n }, (_, i) => ({ t: t0 + i * 3600000, v: 20, o: 'SE' })), [pc]: Array.from({ length: n }, (_, i) => ({ t: t0 + i * 3600000, v: 16, o: 'SE' })) },
+    live: { spots: { [pc]: { t: t0 + 2 * 3600000 - 600000, v: 24, o: 'SE' }, [gm]: { panne: true } } }
+  };
+  const cfg2 = D.merge(D.DEFAULT_CONFIG, {});
+  const c = D.corrections({ superPrev, wind, now: t0 + 2 * 3600000 }, cfg2, E.mergeCfg(E.DEFAULT_CONFIG, {}));
+  assert.strictEqual(c.length, 2);
+  const cg = c.find((x) => x.id === gm), cp = c.find((x) => x.id === pc);
+  assert.ok(Math.abs(cg.ratio[t0 + 5 * 3600000] - 1.25) < 1e-9, 'GM : 20 / 16');
+  assert.ok(!cg.live, 'balise en panne ignorée');
+  assert.ok(cp.live && cp.ratio[t0 + 2 * 3600000] > 1.35, 'PC recalé sur le relevé (24 / 16 → borné 1,4)');
+  assert.ok(cp.ratio[t0 + 8 * 3600000] < 1.06, 'le recalage s’efface : ' + cp.ratio[t0 + 8 * 3600000]);
+  const t = t0 + 5 * 3600000;
+  assert.ok(Math.abs(D.corrAt([cg], ws[0].lat, ws[0].lon, t, cfg2) - 1.25) < 0.01, 'au spot');
+  assert.ok(D.corrAt([cg], 43.43, 3.77, t, cfg2) < 1.01, 'à Frontignan (≈ 27 km) : pas d’effet');
+  assert.strictEqual(D.corrAt([cg], 43.5, 4.0, t0 + 50 * 3600000, cfg2), 1, 'heure sans correction');
+  assert.strictEqual(D.compassDeg('SSO'), 202.5);
+});
+
+test('grille de vent pour la carte', () => {
+  const cfg2 = D.merge(D.DEFAULT_CONFIG, {});
+  const g = D.gridPoints(cfg2);
+  assert.strictEqual(g.length, cfg2.grid.nLat * cfg2.grid.nLon);
+  assert.deepStrictEqual([g[0].lat, g[0].lon, g[g.length - 1].lat, g[g.length - 1].lon], [cfg2.grid.lat0, cfg2.grid.lon0, cfg2.grid.lat1, cfg2.grid.lon1]);
+  assert.strictEqual(D.windPoints({}).length, g.length + cfg2.windSpots.length);
+});

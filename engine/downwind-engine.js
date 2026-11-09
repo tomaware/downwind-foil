@@ -50,7 +50,17 @@
     windowThreshold: 5,       // note mini d'un créneau
     windowMinHours: 2,
     upwindMaxKn: 26,          // aller-retour possible (remonter puis redescendre) jusqu'à ce vent, côte side-shore
-    nowcast: { maxAgeH: 3, decayH: 3.5, ratioClip: [0.6, 1.6] }
+    nowcast: { maxAgeH: 3, decayH: 3.5, ratioClip: [0.6, 1.6] },
+    // vent corrigé de la super prévision (spots Winds-Up) : appliqué autour de chaque spot
+    windSpots: [
+      { id: '135-la-grande-motte', name: 'La Grande-Motte', lat: 43.545, lon: 4.085 },
+      { id: '22-port-camargue', name: 'Port Camargue', lat: 43.480, lon: 4.130 }
+    ],
+    corrRadiusKm: 12,           // poids exp(−(d/12 km)²) : ~1 au spot, 0,5 à 10 km, ~0 au-delà de 25 km
+    corrClip: [0.7, 1.4],       // correction de vitesse bornée
+    liveMaxAgeMin: 90, liveDecayH: 3,
+    // grille de vent pour la carte
+    grid: { lat0: 43.36, lat1: 43.62, lon0: 3.68, lon1: 4.20, nLat: 7, nLon: 9 }
   };
 
   function isNum(x) { return typeof x === 'number' && isFinite(x); }
@@ -165,6 +175,73 @@
     return res;
   }
 
+  /** vent mélangé (AROME → ECMWF) d'un point : { spd (km/h), dir, gust } */
+  function rawWind(wd, t, leadH, ecfg) { var w = windAt(wd, t); return w && Object.keys(w).length ? E.blendWind(w, leadH, ecfg) : null; }
+
+  var DIR16 = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
+  function compassDeg(o) { var i = DIR16.indexOf(String(o || '').toUpperCase().replace('W', 'O')); return i < 0 ? null : i * 22.5; }
+
+  /**
+   * Corrections de vitesse issues de la super prévision vent : rapport (vent corrigé du spot) / (vent brut au spot),
+   * heure par heure, puis recalage sur le dernier relevé Winds-Up (qui s'efface en quelques heures).
+   * Les relevés eux-mêmes ne sortent jamais du calcul.
+   */
+  function corrections(ctx, cfg, ecfg) {
+    var sp = ctx.superPrev;
+    if (!sp || !sp.spots) return [];
+    var now = ctx.now, out = [];
+    cfg.windSpots.forEach(function (ws) {
+      var series = sp.spots[ws.id], wd = ctx.wind['ws_' + ws.id];
+      if (!wd) return;
+      var ratio = {}, n = 0, live = false;
+      (series || []).forEach(function (p) {
+        if (!isNum(p.v)) return;
+        var raw = rawWind(wd, p.t, (p.t - now) / 3600000, ecfg);
+        if (!raw || raw.spd * KN < 4) return;
+        ratio[p.t] = clamp(p.v / (raw.spd * KN), cfg.corrClip[0], cfg.corrClip[1]); n++;
+      });
+      var l = sp.live && sp.live.spots && sp.live.spots[ws.id];
+      if (l && !l.panne && isNum(l.v) && isNum(l.t) && now - l.t <= cfg.liveMaxAgeMin * 60000) {
+        var th = Math.round(l.t / 3600000) * 3600000, rawL = rawWind(wd, th, (th - now) / 3600000, ecfg);
+        if (rawL && rawL.spd * KN >= 4) {
+          var lr = clamp(l.v / (rawL.spd * KN), cfg.corrClip[0], cfg.corrClip[1]);
+          live = true;
+          for (var k = 0; k <= 6; k++) {
+            var t = th + k * 3600000, w = Math.exp(-k / cfg.liveDecayH);
+            ratio[t] = isNum(ratio[t]) ? ratio[t] * (1 - w) + lr * w : 1 + (lr - 1) * w;
+          }
+        }
+      }
+      if (n || live) out.push({ id: ws.id, name: ws.name, lat: ws.lat, lon: ws.lon, ratio: ratio, hours: n, live: live });
+    });
+    return out;
+  }
+
+  /** facteur de vitesse à appliquer en (lat, lon) à l'heure t */
+  function corrAt(corrs, lat, lon, t, cfg) {
+    var sw = 0, s = 0;
+    (corrs || []).forEach(function (c) {
+      var r = c.ratio[t];
+      if (!isNum(r)) return;
+      var d = distKm({ lat: lat, lon: lon }, c), w = Math.exp(-Math.pow(d / cfg.corrRadiusKm, 2));
+      sw += w; s += w * (r - 1);
+    });
+    return sw > 0.02 ? 1 + s / Math.max(1, sw) : 1;
+  }
+
+  function gridPoints(cfg) {
+    var g = cfg.grid, pts = [];
+    for (var i = 0; i < g.nLat; i++) for (var j = 0; j < g.nLon; j++) {
+      pts.push({ id: 'g_' + i + '_' + j, lat: +(g.lat0 + i * (g.lat1 - g.lat0) / (g.nLat - 1)).toFixed(4), lon: +(g.lon0 + j * (g.lon1 - g.lon0) / (g.nLon - 1)).toFixed(4) });
+    }
+    return pts;
+  }
+  /** points de vent supplémentaires : grille de la carte + spots de la super prévision */
+  function windPoints(cfg) {
+    cfg = merge(DEFAULT_CONFIG, cfg);
+    return gridPoints(cfg).concat(cfg.windSpots.map(function (w) { return { id: 'ws_' + w.id, lat: w.lat, lon: w.lon }; }));
+  }
+
   function daylight(t, lat, lon, cfg) { return E.solarElevation(t, lat, lon) > cfg.daylightElevation; }
 
   /**
@@ -189,6 +266,9 @@
       }
     });
 
+    var corrs = corrections(ctx, cfg, ecfg);
+    var ptById = {};
+    queryPoints(ctx.runs, [], cfg).forEach(function (p) { ptById[p.id] = p; });
     var out = ctx.runs.map(function (r) {
       var heading = bearing(r.a, r.b), km = pathKm(r);
       var cal = calib[r.buoy] || E.modelCalibration(null, ecfg);
@@ -197,7 +277,11 @@
       var rows = [];
       for (var k = 0; k < hours; k++) {
         var t = t0 + k * 3600000, leadH = (t - now) / 3600000;
-        var winds = [0, 1].map(function (i) { var w = windAt(ctx.wind[r.id + '_' + i], t); return w && Object.keys(w).length ? E.blendWind(w, leadH, ecfg) : null; }).filter(Boolean);
+        var winds = [0, 1].map(function (i) {
+          var w = rawWind(ctx.wind[r.id + '_' + i], t, leadH, ecfg), p = ptById[r.id + '_' + i];
+          if (w && p) { var f = corrAt(corrs, p.lat, p.lon, t, cfg); w.spd *= f; if (isNum(w.gust)) w.gust *= f; w.corr = f; }
+          return w;
+        }).filter(Boolean);
         if (!winds.length) { rows.push({ t: t, missing: true }); continue; }
         // moyenne des 2 points du parcours
         var u = 0, v = 0, spd = 0, gust = 0, ng = 0, agree = 0;
@@ -219,8 +303,10 @@
           var f = 1 + (nc.ratio - 1) * Math.exp(-Math.max(0, (t - nc.t) / 3600000) / cfg.nowcast.decayH);
           s.h *= f; s.hs *= f;
         }
+        var corrF = winds.reduce(function (a, w) { return a + (w.corr || 1); }, 0) / winds.length;
         var row = score({ t: t, windFrom: windFrom, kn: kn, gkn: gkn, agree: agree / winds.length, sea: s, heading: heading, normal: r.normal, oneWay: !!r.oneWay }, cfg);
         row.leadH = Math.round(leadH);
+        row.corr = Math.round(corrF * 100) / 100;
         row.day = daylight(t, mid.lat, mid.lon, cfg);
         rows.push(row);
       }
@@ -230,7 +316,24 @@
         rows: rows, windows: windows(rows, r, cfg)
       };
     });
-    return { now: now, level: cfg.level, runs: out, calib: calib, cfg: cfg };
+    // grille de vent pour la carte (heures de jour élargies), avec la même correction
+    var gp = gridPoints(cfg), gc = { lat: (cfg.grid.lat0 + cfg.grid.lat1) / 2, lon: (cfg.grid.lon0 + cfg.grid.lon1) / 2 };
+    var grid = { lats: [], lons: [], n: [cfg.grid.nLat, cfg.grid.nLon], times: [], kn: [], dir: [] };
+    for (var gi = 0; gi < cfg.grid.nLat; gi++) grid.lats.push(gp[gi * cfg.grid.nLon].lat);
+    for (var gj = 0; gj < cfg.grid.nLon; gj++) grid.lons.push(gp[gj].lon);
+    for (var k2 = 0; k2 < hours; k2++) {
+      var tg = t0 + k2 * 3600000;
+      if (E.solarElevation(tg, gc.lat, gc.lon) < -12) continue;
+      var kn2 = [], dr2 = [], ok = 0;
+      gp.forEach(function (p) {
+        var w = rawWind(ctx.wind[p.id], tg, (tg - now) / 3600000, ecfg);
+        if (!w) { kn2.push(null); dr2.push(null); return; }
+        ok++; kn2.push(Math.round(w.spd * KN * corrAt(corrs, p.lat, p.lon, tg, cfg) * 10) / 10); dr2.push(Math.round(w.dir));
+      });
+      if (ok) { grid.times.push(tg); grid.kn.push(kn2); grid.dir.push(dr2); }
+    }
+    return { now: now, level: cfg.level, runs: out, calib: calib, cfg: cfg, grid: grid,
+      correction: corrs.map(function (c) { return { spot: c.name, hours: c.hours, live: c.live }; }) };
   }
 
   /** note d'une heure (0-10) pour chaque niveau + explication */
@@ -319,6 +422,8 @@
     return {
       generated: new Date(res.now).toISOString(), level: res.level, levels: Object.keys(LEVELS).map(function (k) { return { id: k, label: LEVELS[k].label, wind: LEVELS[k].wind }; }),
       meta: meta || {},
+      correction: res.correction || [],
+      grid: res.grid || null,
       best: all.slice(0, 10).map(function (w) { return { run: w.run, from: w.from, to: w.to, start: w.start, end: w.end, mean: w.mean, peak: w.peak.score, text: w.text }; }),
       runs: res.runs.map(function (r) {
         return {
@@ -334,6 +439,6 @@
     };
   }
 
-  return { VERSION: '1.0.0', DEFAULT_CONFIG: DEFAULT_CONFIG, LEVELS: LEVELS, bearing: bearing, distKm: distKm, queryPoints: queryPoints,
+  return { VERSION: '1.1.0', corrections: corrections, corrAt: corrAt, compassDeg: compassDeg, windPoints: windPoints, gridPoints: gridPoints, DEFAULT_CONFIG: DEFAULT_CONFIG, LEVELS: LEVELS, bearing: bearing, distKm: distKm, queryPoints: queryPoints,
     shoreKind: shoreKind, pathOf: pathOf, pathKm: pathKm, along: along, windFactor: windFactor, bumps: bumps, score: score, run: run, windows: windows, describe: describe, toJSON: toJSON, merge: merge };
 });
