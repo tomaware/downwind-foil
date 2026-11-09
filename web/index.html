@@ -94,6 +94,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
   function f1(x) { return x == null ? '–' : (Math.round(x * 10) / 10).toFixed(1).replace('.', ','); }
   function f0(x) { return x == null ? '–' : String(Math.round(x)); }
   function col(s) { return 'var(--s' + (s == null ? 0 : s < 2 ? 0 : s < 4 ? 1 : s < 5 ? 2 : s < 7 ? 3 : s < 8.5 ? 4 : 5) + ')'; }
+  function pill(x) { return '<span class="pill" style="background:' + col(x) + (x == null || x < 4 ? ';color:var(--ink)' : '') + '">' + f1(x) + '</span>'; }
   function arrow(deg) { return '<span class="arw" style="transform:rotate(' + Math.round(deg) + 'deg)">↑</span>'; }
   var fmtP = new Intl.DateTimeFormat('fr-FR', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', weekday: 'short', hourCycle: 'h23' });
   function P(t) { var p = {}; fmtP.formatToParts(new Date(t)).forEach(function (x) { p[x.type] = x.value; }); return { j: p.year + p.month + p.day, h: +p.hour, wd: p.weekday, d: +p.day }; }
