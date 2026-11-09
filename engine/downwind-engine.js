@@ -210,7 +210,7 @@
         rows.push(row);
       }
       return {
-        id: r.id, name: r.name, a: r.a.name, b: r.b.name, km: Math.round(km), heading: Math.round(heading), normal: r.normal,
+        id: r.id, name: r.name, a: r.a.name, b: r.b.name, coords: [[r.a.lat, r.a.lon], [r.b.lat, r.b.lon]], label: r.label || { bearing: r.normal, km: 2.5 }, km: Math.round(km), heading: Math.round(heading), normal: r.normal,
         buoy: r.buoy, nowObs: nc || null, access: r.access || [], confidence: r.confidence, notes: r.notes,
         rows: rows, windows: windows(rows, r, cfg)
       };
@@ -304,7 +304,7 @@
       best: all.slice(0, 10).map(function (w) { return { run: w.run, from: w.from, to: w.to, start: w.start, end: w.end, mean: w.mean, peak: w.peak.score, text: w.text }; }),
       runs: res.runs.map(function (r) {
         return {
-          id: r.id, name: r.name, a: r.a, b: r.b, km: r.km, heading: r.heading, normal: r.normal, buoy: r.buoy, nowObs: r.nowObs,
+          id: r.id, name: r.name, a: r.a, b: r.b, coords: r.coords, label: r.label, km: r.km, heading: r.heading, normal: r.normal, buoy: r.buoy, nowObs: r.nowObs,
           access: r.access, confidence: r.confidence, notes: r.notes,
           windows: r.windows.map(function (w) { return { from: w.from, to: w.to, start: w.start, end: w.end, mean: w.mean, peak: w.peak.score, text: w.text }; }),
           hours: r.rows.filter(function (x) { return !x.missing; }).map(function (x) {

@@ -26,7 +26,11 @@
         "Palavas"
       ],
       "confidence": "medium",
-      "notes": "Long run par SO (de Sète vers Palavas) ou par NE / E (de Palavas vers Sète). Plages sauvages entre Aresquiers et Maguelone : peu de sorties."
+      "notes": "Long run par SO (de Sète vers Palavas) ou par NE / E (de Palavas vers Sète). Plages sauvages entre Aresquiers et Maguelone : peu de sorties.",
+      "label": {
+        "bearing": 144,
+        "km": 2.5
+      }
     },
     {
       "id": "palavas-grandemotte",
@@ -52,7 +56,11 @@
         "Grand Travers"
       ],
       "confidence": "medium",
-      "notes": "Par SO de Palavas vers la Grande-Motte, par E / NE en sens inverse. Digues et ports (Carnon) à contourner au large."
+      "notes": "Par SO de Palavas vers la Grande-Motte, par E / NE en sens inverse. Digues et ports (Carnon) à contourner au large.",
+      "label": {
+        "bearing": 160,
+        "km": 2.5
+      }
     },
     {
       "id": "grandemotte-graudurois",
@@ -77,59 +85,40 @@
         "Le Grau-du-Roi rive droite"
       ],
       "confidence": "low",
-      "notes": "Fond de baie d'Aigues-Mortes, plage face au SSO : par SE / ESE du Grau-du-Roi vers la Grande-Motte (aller-retours), par O / ONO dans l'autre sens. Au-delà, la pointe de l'Espiguette tourne au sud : non modélisée ici. Passe du Grau-du-Roi à contourner."
+      "notes": "Fond de baie d'Aigues-Mortes, plage face au SSO, en passant devant le Boucanet : par SE / ESE du Grau-du-Roi vers la Grande-Motte, par O / ONO dans l'autre sens. Passe du Grau-du-Roi à contourner.",
+      "label": {
+        "bearing": 40,
+        "km": 3
+      }
     },
     {
-      "id": "gruissan-portlanouvelle",
-      "name": "Gruissan ↔ Port-la-Nouvelle",
+      "id": "boucanet-plagesud",
+      "name": "Le Boucanet ↔ Plage Sud",
       "a": {
-        "name": "Gruissan (Chalets)",
-        "lat": 43.095,
-        "lon": 3.115
+        "name": "Le Boucanet",
+        "lat": 43.551,
+        "lon": 4.1075
       },
       "b": {
-        "name": "Port-la-Nouvelle",
-        "lat": 43.015,
-        "lon": 3.065
+        "name": "Plage Sud (Port Camargue)",
+        "lat": 43.5075,
+        "lon": 4.129
       },
-      "coast": 205,
-      "normal": 115,
-      "km": 10,
-      "buoy": "01101",
+      "coast": 158,
+      "normal": 248,
+      "km": 5,
+      "buoy": "03001",
       "access": [
-        "Gruissan",
-        "Saint-Pierre-la-Mer",
-        "Les Ayguades",
-        "Port-la-Nouvelle"
+        "Le Boucanet",
+        "Le Grau-du-Roi rive gauche",
+        "Plage Sud (interdite au kite et au wing l'été)"
       ],
       "confidence": "low",
-      "notes": "Par N / NE de Gruissan vers Port-la-Nouvelle, par S / SE en sens inverse. Tramontane (NO) : de terre, dangereuse."
-    },
-    {
-      "id": "leucate-barcares",
-      "name": "La Franqui ↔ Le Barcarès",
-      "a": {
-        "name": "La Franqui",
-        "lat": 42.935,
-        "lon": 3.04
-      },
-      "b": {
-        "name": "Le Barcarès",
-        "lat": 42.79,
-        "lon": 3.045
-      },
-      "coast": 178,
-      "normal": 88,
-      "km": 16,
-      "buoy": "01101",
-      "access": [
-        "La Franqui",
-        "Leucate plage",
-        "Port Leucate",
-        "Le Barcarès"
-      ],
-      "confidence": "medium",
-      "notes": "Par N / NNO (tramontane bien orientée) de la Franqui vers le Barcarès : side-off, experts et à plusieurs ; par S / SE (marin) en sens inverse."
+      "notes": "Devant le Grau-du-Roi et Port Camargue, plage Sud face à l'OSO : par N / NNO du Boucanet vers la plage Sud, par S / SSO en sens inverse. Passes et épis (Port Camargue) : rester au large. SE et mistral / tramontane y sont side-off.",
+      "label": {
+        "bearing": 200,
+        "km": 4
+      }
     }
   ],
   "buoys": [
@@ -152,5 +141,6 @@
       "lon": 3.125
     }
   ],
-  "_doc_buoys": "Bouées au large (Candhis) qui servent à vérifier les modèles de vagues. Les mesures viennent de l'historique de Super Prévi Surf (dépôt public), pour ne pas consommer le quota Candhis une seconde fois."
+  "_doc_buoys": "Bouées au large (Candhis) qui servent à vérifier les modèles de vagues. Les mesures viennent de l'historique de Super Prévi Surf (dépôt public), pour ne pas consommer le quota Candhis une seconde fois.",
+  "_doc_label": "label = position de la pastille sur la carte (cap et distance depuis le milieu du parcours), pour que les parcours voisins ne se chevauchent pas."
 }

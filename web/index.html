@@ -6,6 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b1520">
 <title>Downwind · Golfe du Lion</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
 :root{--bg:#f3f6f8;--card:#fff;--ink:#0f1c2a;--mute:#5d6b7a;--line:#e1e6ec;--chip:#eef2f6;--warn:#c2410c;
 --s0:#dde3e9;--s1:#b9cde0;--s2:#7fb8cc;--s3:#3fae86;--s4:#1f9a55;--s5:#e2a325}
@@ -62,6 +64,20 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 .dot{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px}
 .about{color:var(--mute);font-size:12.5px;line-height:1.55;margin-top:16px}
 .about b{color:var(--ink)}
+#map{height:420px;border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--chip);z-index:0}
+.tbar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:8px}
+.tdays{display:flex;gap:4px;overflow-x:auto}
+.tdays button{border:0;background:var(--chip);color:var(--ink);font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.tdays button.on{background:var(--ink);color:var(--bg);font-weight:600}
+.trow{display:flex;align-items:center;gap:10px;margin-top:8px}
+.trow input{flex:1;accent-color:#1f9a55}
+.tlab{font-weight:700;font-variant-numeric:tabular-nums;min-width:62px;text-align:right}
+.mk{display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-50%);width:max-content;pointer-events:auto;cursor:pointer}
+.mk .b{display:flex;align-items:center;gap:4px;background:#fff;color:#0f1c2a;border-radius:99px;padding:2px 7px 2px 3px;font:700 12px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;box-shadow:0 1px 4px rgba(0,0,0,.35);white-space:nowrap}
+.mk .s{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:11px}
+.mk .w{font-weight:600;color:#3a4a5a}
+.mk .ar{display:inline-block;font-size:13px}
+.leaflet-container{font:inherit}
 .err{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:20px}
 </style>
 </head>
@@ -70,12 +86,16 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
 <header><h1>Downwind · Golfe du Lion</h1><div class="maj" id="maj">Chargement…</div></header>
 <div class="lv" id="lv"></div>
 <div class="lvinfo" id="lvinfo"></div>
+<h2>Carte</h2>
+<div id="map"></div>
+<div class="tbar"><div class="tdays" id="tdays"></div><div class="trow"><input type="range" id="thr" min="7" max="19" step="1"><span class="tlab" id="tlab"></span></div></div>
 <h2>Meilleurs créneaux de jour</h2>
 <div class="cren" id="cren"></div>
 <h2>Parcours</h2>
 <div id="runs"></div>
 <div class="leg" id="leg"></div>
 <div class="about">
+  <b>Carte.</b> Chaque parcours est coloré par sa note à l'heure choisie (curseur), la flèche donne le sens du downwind, ⚠ et pointillés = vent de terre ou side-off. Touche un parcours pour son détail.<br>
   <b>Lecture.</b> Chaque case = une heure de jour (7 h → 19 h), colorée par la note sur 10 pour ton niveau ; la flèche indique le sens du downwind. Hachures = vent de terre ou side-off (⚠ dérive au large). Touche un parcours pour le détail toutes les 3 h.<br>
   <b>Note.</b> Vent (idéal selon le niveau) × orientation à la côte (side-shore idéal) × axe du parcours × régularité, puis la mer : bosses qui avancent avec le vent, hauteur 0,7-1,5 m, période = espacement (3 s ≈ 15 m freine, 6 s ≈ 55 m très bien, ≥ 8 s idéal), mer croisée pénalisée.<br>
   <b>Données.</b> Vent AROME / ARPEGE (Météo-France) et ECMWF ; mer : 5 modèles de vagues pondérés par leur erreur aux bouées Candhis (Sète, Espiguette, Leucate), recalés sur la dernière mesure. Mis à jour toutes les heures. À utiliser avec ton jugement : vérifie le vent réel avant de partir.
@@ -129,7 +149,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
     var lvl = D.levels.filter(function (l) { return l.id === LV; })[0] || D.levels[1];
     document.getElementById('lv').innerHTML = D.levels.map(function (l) { return '<button data-l="' + l.id + '" class="' + (l.id === LV ? 'on' : '') + '">' + l.label + '</button>'; }).join('');
     document.getElementById('lvinfo').textContent = 'Vent idéal ' + lvl.wind[1] + '-' + lvl.wind[2] + ' nd (démarre à ' + lvl.wind[0] + ', limite ' + lvl.wind[3] + ')';
-    Array.prototype.forEach.call(document.querySelectorAll('#lv button'), function (b) { b.onclick = function () { LV = b.dataset.l; try { localStorage.setItem('dw-level', LV); } catch (e) {} render(); }; });
+    Array.prototype.forEach.call(document.querySelectorAll('#lv button'), function (b) { b.onclick = function () { LV = b.dataset.l; try { localStorage.setItem('dw-level', LV); } catch (e) {} render(); if (SEL) setTime(SEL); }; });
 
     var all = [];
     D.runs.forEach(function (r) { windows(r).forEach(function (w) { all.push(w); }); });
@@ -140,7 +160,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       var e = document.createElement('div'); e.className = 'cr';
       e.innerHTML = '<div class="top"><span class="when">' + dayName(w.start) + ' ' + hm(w.start) + '–' + hm(w.end) + '</span>' + pill(w.mean) + '</div>' +
         '<div class="route">' + arrow(travel(w.run, w.peak)) + ' ' + w.peak.from + ' → ' + w.peak.toward + '</div><div class="w">' + cond(w.peak) + (w.peak.roundTrip ? ' · aller-retour possible' : '') + '</div>';
-      e.onclick = function () { var el = document.getElementById('r-' + w.run.id); el.classList.add('open'); el.scrollIntoView({ behavior: 'smooth' }); };
+      e.onclick = function () { setTime(w.peak.t); document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
       cr.appendChild(e);
     });
 
@@ -201,11 +221,71 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       '<span><span class="dot c off" style="background:var(--s1);height:12px"></span> vent de terre / side-off</span>';
   }
 
+  // ---------------------------------------------------------------- carte
+  var MAP = null, LAYERS = [], SEL = null, DAYS = [];
+  var MC = ['#8f9aa6', '#6f96bd', '#2f95b0', '#2fa36b', '#1f8a4c', '#e2a325'];
+  function mcol(s) { return MC[s == null ? 0 : s < 2 ? 0 : s < 4 ? 1 : s < 5 ? 2 : s < 7 ? 3 : s < 8.5 ? 4 : 5]; }
+  function hourAt(r, t) { for (var i = 0; i < r.hours.length; i++) if (r.hours[i][0] === t) return row(r, r.hours[i]); return null; }
+  function initMap() {
+    if (MAP) return;
+    if (!window.L) { document.getElementById('map').innerHTML = '<div class="err">Carte indisponible (bibliothèque non chargée). Recharge la page.</div>'; return; }
+    MAP = L.map('map', { zoomControl: true, attributionControl: true, scrollWheelZoom: false, zoomSnap: 0.25 });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 16, attribution: '© OpenStreetMap' }).addTo(MAP);
+    var b = [];
+    D.runs.forEach(function (r) { r.coords.forEach(function (c) { b.push(c); }); });
+    MAP.fitBounds(b, { padding: [36, 36] });
+    // jours disponibles (heures de jour)
+    var seen = {};
+    D.runs[0].hours.forEach(function (h) { var o = row(D.runs[0], h), p = P(o.t); if (o.t + 36e5 > Date.now() && p.h >= 7 && p.h <= 19 && !seen[p.j]) { seen[p.j] = 1; DAYS.push({ j: p.j, t: o.t }); } });
+    document.getElementById('thr').oninput = function () { var d = DAYS.filter(function (x) { return x.j === P(SEL).j; })[0] || DAYS[0]; setTime(tAt(d.j, +this.value)); };
+  }
+  function tAt(j, h) { var r = D.runs[0]; for (var i = 0; i < r.hours.length; i++) { var p = P(r.hours[i][0]); if (p.j === j && p.h === h) return r.hours[i][0]; } return null; }
+  function setTime(t) {
+    if (!MAP || t == null) return;
+    SEL = t;
+    var p = P(t);
+    document.getElementById('tdays').innerHTML = DAYS.map(function (d) { return '<button data-j="' + d.j + '" class="' + (d.j === p.j ? 'on' : '') + '">' + dayName(d.t) + '</button>'; }).join('');
+    Array.prototype.forEach.call(document.querySelectorAll('#tdays button'), function (b) { b.onclick = function () { var h = +document.getElementById('thr').value; var t2 = tAt(b.dataset.j, h); if (t2 == null) t2 = tAt(b.dataset.j, 9) || tAt(b.dataset.j, 10); setTime(t2); }; });
+    document.getElementById('thr').value = p.h;
+    document.getElementById('tlab').textContent = p.h + ' h';
+    LAYERS.forEach(function (l) { MAP.removeLayer(l); }); LAYERS = [];
+    D.runs.forEach(function (r) {
+      var o = hourAt(r, t); if (!o) return;
+      var off = o.shore === 'off' || o.shore === 'sideoff';
+      var line = L.polyline(r.coords, { color: mcol(o.score), weight: 8, opacity: o.day ? 0.95 : 0.5, dashArray: off ? '8 8' : null, lineCap: 'round' }).addTo(MAP);
+      // pastille au large du milieu du parcours (évite que les parcours voisins se chevauchent)
+      var mid = [(r.coords[0][0] + r.coords[1][0]) / 2, (r.coords[0][1] + r.coords[1][1]) / 2];
+      var lb = r.label || { bearing: r.normal, km: 2.5 }, km = lb.km, rad = lb.bearing * Math.PI / 180;
+      mid = [mid[0] + km / 111.2 * Math.cos(rad), mid[1] + km / (111.2 * Math.cos(mid[0] * Math.PI / 180)) * Math.sin(rad)];
+      var html = '<div class="mk"><div class="b"><span class="s" style="background:' + mcol(o.score) + '">' + f0(o.score) + '</span>' +
+        (o.score >= 2 ? '<span class="ar" style="transform:rotate(' + travel(r, o) + 'deg)">⬆</span>' : '') +
+        '<span class="w">' + f0(o.kn) + (off ? ' ⚠' : '') + '</span></div></div>';
+      var mk = L.marker(mid, { icon: L.divIcon({ html: html, className: '', iconSize: [0, 0] }) }).addTo(MAP);
+      var go = function () { var el = document.getElementById('r-' + r.id); el.classList.add('open'); el.scrollIntoView({ behavior: 'smooth' }); };
+      var tip = r.name + ' — ' + f1(o.score) + '/10 · ' + cond(o) + ' · vers ' + o.toward;
+      line.bindTooltip(tip); mk.bindTooltip(tip);
+      line.on('click', go); mk.on('click', go);
+      LAYERS.push(line, mk);
+      [r.coords[0], r.coords[1]].forEach(function (c) { LAYERS.push(L.circleMarker(c, { radius: 4, color: '#0f1c2a', weight: 2, fillColor: '#fff', fillOpacity: 1 }).addTo(MAP)); });
+    });
+  }
+  function defaultTime() {
+    var all = [];
+    D.runs.forEach(function (r) { windows(r).forEach(function (w) { all.push(w); }); });
+    all.sort(function (a, b) { return b.mean - a.mean; });
+    if (all.length) return all[0].peak.t;
+    // sinon : l'heure de jour la mieux notée, tous parcours confondus
+    var best = null;
+    D.runs.forEach(function (r) { r.hours.forEach(function (h) { var o = row(r, h), p = P(o.t); if (o.t + 36e5 > Date.now() && p.h >= 7 && p.h <= 19 && (!best || o.score > best.score)) best = o; }); });
+    return best ? best.t : D.runs[0].hours[0][0];
+  }
+
   fetch('data/downwind.json?t=' + Math.floor(Date.now() / 6e5), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function (d) {
     D = d; F = d.hourFields;
     if (!d.levels.some(function (l) { return l.id === LV; })) LV = 'intermediaire';
     document.getElementById('maj').textContent = 'Prévision ' + ago(Date.parse(d.generated));
     render();
+    try { initMap(); setTime(defaultTime()); } catch (e) { document.getElementById('map').innerHTML = '<div class="err">Carte indisponible (' + e.message + ')</div>'; }
   }).catch(function (e) {
     document.getElementById('maj').textContent = '';
     document.getElementById('runs').innerHTML = '<div class="err">Prévision indisponible (' + e.message + '). Réessaie dans quelques minutes.</div>';

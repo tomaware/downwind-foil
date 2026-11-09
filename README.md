@@ -2,7 +2,7 @@
 
 Module de prévision **vent + mer au large** pour le downwind en wing foil : remonter le vent puis redescendre (aller-retour), ou partir d'un point A pour arriver à un point B vent dans le dos (avec navette). Recalculé toutes les heures par GitHub Actions.
 
-**Page web : https://tomaware.github.io/downwind-foil/** (à ajouter sur l'écran d'accueil du téléphone). Version texte : [`data/PREVISION.md`](data/PREVISION.md) (meilleurs créneaux des 4 prochains jours, puis chaque parcours toutes les 3 h). Les données complètes pour une future app sont dans `data/downwind.json`.
+**Page web : https://tomaware.github.io/downwind-foil/** (carte avec curseur d'heure, créneaux, détail par parcours ; à ajouter sur l'écran d'accueil du téléphone). Version texte : [`data/PREVISION.md`](data/PREVISION.md) (meilleurs créneaux des 4 prochains jours, puis chaque parcours toutes les 3 h). Les données complètes pour une future app sont dans `data/downwind.json`.
 
 ## Parcours (`engine/runs.json`)
 
@@ -10,9 +10,8 @@ Module de prévision **vent + mer au large** pour le downwind en wing foil : rem
 |---|---|---|
 | Sète ↔ Palavas | 27 km | SO → vers Palavas · NE / ENE → vers Sète |
 | Palavas ↔ La Grande-Motte | 10 km | SO → vers la Grande-Motte · ENE → vers Palavas |
-| La Grande-Motte ↔ Le Grau-du-Roi | 5 km | SE / ESE → vers la Grande-Motte · O / ONO → vers le Grau-du-Roi |
-| Gruissan ↔ Port-la-Nouvelle | 10 km | NNE → vers Port-la-Nouvelle · SSO → vers Gruissan |
-| La Franqui ↔ Le Barcarès | 16 km | N → vers le Barcarès · S → vers la Franqui |
+| La Grande-Motte ↔ Le Grau-du-Roi (par le Boucanet) | 5 km | SE / ESE → vers la Grande-Motte · O / ONO → vers le Grau-du-Roi |
+| Le Boucanet ↔ Plage Sud (Port Camargue) | 5 km | N / NNO → vers la plage Sud · S / SSO → vers le Boucanet |
 
 Les coordonnées, l'orientation de la côte (`normal` = direction du large) et les sorties sont **approximatives** : à corriger avec ta connaissance du terrain. Ajouter un parcours = ajouter un bloc dans `runs.json`.
 

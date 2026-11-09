@@ -132,10 +132,11 @@ test('run() de bout en bout : SO établi le jour 2 → créneau Sète → Palava
   assert.ok(w.mean >= 6, 'note ' + w.mean + ' ' + w.text);
   const peak = w.peak;
   assert.ok(peak.bumpH > 0.9 && peak.cross < 0.15, 'la houle de SE (0,3 m) compte comme mer croisée, la mer du vent porte : ' + JSON.stringify(peak));
-  // gruissan : côte N-S, SO = de terre-ish → pas de créneau
-  const gr = res.runs.find((r) => r.id === 'gruissan-portlanouvelle');
-  const gx = gr.rows.find((x) => x.t === peak.t);
-  assert.ok(['sideoff', 'off'].includes(gx.shoreCode), gx.shore);
+  // plage Sud (face à l'OSO) : le SO y souffle de la mer → pas un downwind le long de la plage
+  const ps = res.runs.find((r) => r.id === 'boucanet-plagesud');
+  const px = ps.rows.find((x) => x.t === peak.t);
+  assert.strictEqual(px.shoreCode, 'on', px.shore);
+  assert.ok(px.score < 4, 'note ' + px.score);
   const json = D.toJSON(res);
   assert.ok(json.best.length >= 1 && json.runs[0].hours[0].length === json.hourFields.length);
 });
