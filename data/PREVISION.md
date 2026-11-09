@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : lundi 9 novembre 2026 à 23:09 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : lundi 9 novembre 2026 à 23:13 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
