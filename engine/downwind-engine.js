@@ -333,7 +333,11 @@
       if (ok) { grid.times.push(tg); grid.kn.push(kn2); grid.dir.push(dr2); }
     }
     return { now: now, level: cfg.level, runs: out, calib: calib, cfg: cfg, grid: grid,
-      correction: corrs.map(function (c) { return { spot: c.name, hours: c.hours, live: c.live }; }) };
+      correction: corrs.map(function (c) {
+        var v = Object.keys(c.ratio).map(function (k) { return c.ratio[k]; });
+        return { spot: c.name, hours: c.hours, live: c.live, ratioMin: v.length ? Math.round(Math.min.apply(null, v) * 100) / 100 : null,
+          ratioMoy: v.length ? Math.round(v.reduce(function (a, x) { return a + x; }, 0) / v.length * 100) / 100 : null, ratioMax: v.length ? Math.round(Math.max.apply(null, v) * 100) / 100 : null };
+      }) };
   }
 
   /** note d'une heure (0-10) pour chaque niveau + explication */

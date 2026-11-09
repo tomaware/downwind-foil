@@ -58,7 +58,7 @@ async function main() {
   Object.keys(hist || {}).forEach((c) => { buoyObs[c] = hist[c].filter((o) => o.hs != null); });
   const now = offline && offline.now ? offline.now : Date.now();
   const res = D.run({ runs: doc.runs, buoys: doc.buoys, marine, wind, buoyObs, now, cfg, hours: 96, superPrev });
-  console.log('[build] correction du vent : ' + (res.correction.length ? res.correction.map((c) => `${c.spot} ${c.hours} h${c.live ? ' + relevé en direct' : ''}`).join(' ; ') : 'aucune') + ` ; grille ${res.grid.times.length} h`);
+  console.log('[build] correction du vent : ' + (res.correction.length ? res.correction.map((c) => `${c.spot} ${c.hours} h (vitesse × ${c.ratioMin}…${c.ratioMoy}…${c.ratioMax})${c.live ? ' + relevé en direct' : ''}`).join(' ; ') : 'aucune') + ` ; grille ${res.grid.times.length} h`);
 
   const waveModels = [...new Set(Object.values(marine).flatMap((p) => p.series.flatMap((s) => Object.keys(s.models))))];
   const windModels = [...new Set(Object.values(wind).flatMap((p) => Object.keys(p.models)))];
