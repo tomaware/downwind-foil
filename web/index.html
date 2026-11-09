@@ -138,7 +138,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
     cr.innerHTML = all.length ? '' : '<div class="vide">Aucun créneau de jour noté 5/10 ou plus sur les 4 prochains jours, pour ce niveau.</div>';
     all.slice(0, 10).forEach(function (w) {
       var e = document.createElement('div'); e.className = 'cr';
-      e.innerHTML = '<div class="top"><span class="when">' + dayName(w.start) + ' ' + hm(w.start) + '–' + hm(w.end) + '</span><span class="pill" style="background:' + col(w.mean) + '">' + f1(w.mean) + '</span></div>' +
+      e.innerHTML = '<div class="top"><span class="when">' + dayName(w.start) + ' ' + hm(w.start) + '–' + hm(w.end) + '</span>' + pill(w.mean) + '</div>' +
         '<div class="route">' + arrow(travel(w.run, w.peak)) + ' ' + w.peak.from + ' → ' + w.peak.toward + '</div><div class="w">' + cond(w.peak) + (w.peak.roundTrip ? ' · aller-retour possible' : '') + '</div>';
       e.onclick = function () { var el = document.getElementById('r-' + w.run.id); el.classList.add('open'); el.scrollIntoView({ behavior: 'smooth' }); };
       cr.appendChild(e);
@@ -152,7 +152,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
       var el = document.createElement('div'); el.className = 'run'; el.id = 'r-' + r.id;
       var h = '<div class="rh"><div><div class="rn">' + r.name + '</div><div class="rs">' + r.km + ' km' +
         (r.nowObs ? ' · bouée ' + r.buoy + ' : ' + f1(r.nowObs.hs) + ' m ' + ago(r.nowObs.t) : '') + '</div></div>';
-      if (cur) h += '<div class="now"><div class="big">' + f0(cur.kn) + ' nd</div><span class="pill" style="background:' + col(cur.score) + '">' + f1(cur.score) + '</span></div>';
+      if (cur) h += '<div class="now"><div class="big">' + f0(cur.kn) + ' nd</div>' + pill(cur.score) + '</div>';
       h += '</div>';
       if (cur) {
         var warn = cur.shore === 'off' || cur.shore === 'sideoff';
@@ -190,7 +190,7 @@ tr.jr td{color:var(--mute);font-weight:700;text-align:left;padding-top:10px}
         h += '<tr' + (o.day ? '' : ' style="opacity:.5"') + '><td>' + p.h + 'h</td><td>' + arrow(o.windFrom + 180) + ' ' + f0(o.kn) + ' <span class="m">(' + f0(o.gust) + ')</span> ' + bous(o.windFrom) + '</td>' +
           '<td><span class="e' + (off ? ' warn' : '') + '">' + (off ? '⚠ ' : '') + SHORE[o.shore] + '</span></td><td>' + arrow(travel(r, o)) + ' <span class="e">' + o.toward.replace(/\s*\(.*\)/, '') + '</span></td>' +
           '<td>' + (o.bumpH == null ? '–' : f1(o.bumpH) + ' m <span class="m">' + f0(o.bumpT) + ' s</span>' + (o.cross > 0.4 ? '<div class="e">mer croisée</div>' : '')) + '</td>' +
-          '<td><span class="pill" style="background:' + col(o.score) + '">' + f1(o.score) + '</span></td></tr>';
+          '<td>' + pill(o.score) + '</td></tr>';
       });
       h += '</table><div class="notes">' + r.notes + (r.access && r.access.length ? '<br>Mises à l\'eau / sorties : ' + r.access.join(', ') + '.' : '') + (r.confidence === 'low' ? '<br>Tracé à confirmer sur le terrain.' : '') + '</div></div>';
       el.innerHTML = h;
