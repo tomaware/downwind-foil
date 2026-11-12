@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : jeudi 12 novembre 2026 à 05:16 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : jeudi 12 novembre 2026 à 06:20 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -16,7 +16,7 @@ Vent en nœuds (rafales), d'où il vient · houle = mer qui avance avec le vent 
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| jeu. 12 10 h | 7 (10) SE | de mer | → Frontignan plage | 0,7 m · 5 s · ~34 m | ⚪ 0,0 |
+| jeu. 12 10 h | 8 (12) ESE | de mer | → Frontignan plage | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
 | 13 h | 6 (11) NNO | ⚠ de terre | → Frontignan plage | 0,0 m · 2 s · ~5 m | ⚪ 0,0 |
 | 16 h | 10 (16) ONO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | ven. 13 10 h | 6 (9) NO | ⚠ de terre | → Palavas | 0,2 m · 2 s · ~9 m | ⚪ 0,0 |
@@ -33,11 +33,11 @@ _Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauva
 
 ### Palavas ↔ La Grande-Motte (10 km)
 
-Bouée 03001 : 1,0 m mesurés à 04:30 (modèles ×0.83 sur les premières heures).
+Bouée 03001 : 1,1 m mesurés à 05:30 (modèles ×0.87 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| jeu. 12 10 h | 10 (13) ESE | side-on | → Palavas | 0,3 m · 3 s · ~16 m | ⚪ 0,0 |
+| jeu. 12 10 h | 11 (15) ESE | side-on | → Palavas | 0,3 m · 3 s · ~16 m | ⚪ 0,0 |
 | 13 h | 5 (8) N | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
 | 16 h | 8 (13) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | ven. 13 10 h | 5 (8) N | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
@@ -48,17 +48,17 @@ Bouée 03001 : 1,0 m mesurés à 04:30 (modèles ×0.83 sur les premières heure
 | 16 h | 5 (8) NNE | ⚠ de terre | → Palavas | 0,2 m · 2 s · ~7 m | ⚪ 0,0 |
 | dim. 15 10 h | 8 (13) E | side-shore | → Palavas | 1,3 m · 7 s · ~75 m | ⚪ 0,0 |
 | 13 h | 8 (14) ESE | side-on | → Palavas | 1,9 m · 7 s · ~75 m | ⚪ 0,0 |
-| 16 h | 11 (15) SE | de mer | → Palavas | 1,6 m · 7 s · ~69 m | ⚪ 0,0 |
+| 16 h | 11 (16) SE | de mer | → Palavas | 1,6 m · 7 s · ~69 m | ⚪ 0,0 |
 
 _Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues du port de Carnon à contourner au large._
 
 ### Plage Sud → La Grande-Motte (6 km)
 
-Bouée 03001 : 1,0 m mesurés à 04:30 (modèles ×0.83 sur les premières heures).
+Bouée 03001 : 1,1 m mesurés à 05:30 (modèles ×0.87 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| jeu. 12 10 h | 13 (19) ESE | side-shore | → La Grande-Motte | 0,6 m · 5 s · ~31 m | ⚪ 1,9 |
+| jeu. 12 10 h | 12 (18) ESE | side-shore | → La Grande-Motte | 0,4 m · 4 s · ~22 m | ⚪ 0,0 |
 | 13 h | 8 (12) N | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 16 h | 9 (16) NNO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
 | ven. 13 10 h | 10 (14) N | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 3 s · ~10 m | ⚪ 0,0 |
