@@ -1,12 +1,12 @@
 # Downwind wing foil — prévision
 
-Mise à jour : vendredi 13 novembre 2026 à 05:16 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : vendredi 13 novembre 2026 à 06:19 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
 | Quand | Parcours | Note | Conditions au meilleur moment |
 |---|---|---|---|
-| dim. 15 14 h – 16 h | Plage Sud (Port Camargue) → La Grande-Motte | **6,7** (max 7,3) | 16 nd SE (raf. 24) · side-shore · houle 1,4 m · 6 s (~64 m) |
+| dim. 15 14 h – 16 h | Plage Sud (Port Camargue) → La Grande-Motte | **7,0** (max 7,3) | 16 nd SE (raf. 24) · side-shore · houle 1,4 m · 6 s (~64 m) |
 
 ## Par parcours, toutes les 3 h (de jour)
 
@@ -14,12 +14,12 @@ Vent en nœuds (rafales), d'où il vient · houle = mer qui avance avec le vent 
 
 ### Frontignan ↔ Palavas (17 km)
 
-Bouée 03404 : 0,8 m mesurés à 03:30 (modèles ×0.68 sur les premières heures).
+Bouée 03404 : 0,8 m mesurés à 03:30 (modèles ×0.69 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
 | ven. 13 10 h | 5 (9) NO | ⚠ de terre | → Frontignan plage | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
-| 13 h | 5 (8) NO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
+| 13 h | 5 (8) NO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 16 h | 7 (11) NE | side-shore | → Frontignan plage | 0,0 m · 2 s · ~5 m | ⚪ 0,0 |
 | sam. 14 10 h | 9 (14) NNE | ⚠ side-off | → Frontignan plage | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
 | 13 h | 7 (12) NE | side-shore | → Frontignan plage | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
@@ -29,7 +29,7 @@ Bouée 03404 : 0,8 m mesurés à 03:30 (modèles ×0.68 sur les premières heure
 | 16 h | 5 (10) SSO | side-on | → Palavas | 0,1 m · 5 s · ~37 m | ⚪ 0,0 |
 | lun. 16 10 h | 3 (5) OSO | side-shore | → Palavas | 0,0 m ·  | ⚪ 0,0 |
 | 13 h | 6 (11) SO | side-shore | → Palavas | 0,3 m · 5 s · ~35 m | ⚪ 0,0 |
-| 16 h | 5 (10) S | de mer | → Palavas | 0,6 m · 6 s · ~61 m | ⚪ 0,0 |
+| 16 h | 5 (10) S | side-on | → Palavas | 0,6 m · 6 s · ~61 m | ⚪ 0,0 |
 
 _Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauvages entre les Aresquiers et Maguelone : peu de sorties._
 
@@ -39,7 +39,7 @@ Bouée 03001 : 1,3 m mesurés à 03:30 (modèles ×0.93 sur les premières heure
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| ven. 13 10 h | 6 (10) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
+| ven. 13 10 h | 6 (10) SO | side-shore | → La Grande-Motte (Grand Travers) | 0,7 m · 9 s · ~119 m | ⚪ 0,0 |
 | 13 h | 4 (7) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,0 m · 2 s · ~4 m | ⚪ 0,0 |
 | 16 h | 10 (14) NNE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | sam. 14 10 h | 10 (15) NNE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
@@ -48,8 +48,8 @@ Bouée 03001 : 1,3 m mesurés à 03:30 (modèles ×0.93 sur les premières heure
 | dim. 15 10 h | 7 (12) NE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~9 m | ⚪ 0,0 |
 | 13 h | 4 (8) ENE | side-shore | → Palavas | 0,0 m · 4 s · ~20 m | ⚪ 0,0 |
 | 16 h | 7 (25) S | de mer | → La Grande-Motte (Grand Travers) | 0,4 m · 5 s · ~41 m | ⚪ 0,0 |
-| lun. 16 10 h | 4 (6) OSO | side-shore | → La Grande-Motte (Grand Travers) | 0,0 m ·  | ⚪ 0,0 |
-| 13 h | 5 (9) SO | side-on | → La Grande-Motte (Grand Travers) | 0,6 m · 6 s · ~60 m | ⚪ 0,0 |
+| lun. 16 10 h | 4 (5) OSO | side-shore | → La Grande-Motte (Grand Travers) | 0,0 m ·  | ⚪ 0,0 |
+| 13 h | 5 (9) SO | side-shore | → La Grande-Motte (Grand Travers) | 0,6 m · 6 s · ~60 m | ⚪ 0,0 |
 | 16 h | 5 (8) SSO | de mer | → La Grande-Motte (Grand Travers) | 0,6 m · 6 s · ~59 m | ⚪ 0,0 |
 
 _Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues du port de Carnon à contourner au large._
@@ -60,15 +60,15 @@ Bouée 03001 : 1,3 m mesurés à 03:30 (modèles ×0.93 sur les premières heure
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| ven. 13 10 h | 12 (17) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
+| ven. 13 10 h | 11 (16) ONO | side-shore | → Plage Sud (Port Camargue) | 0,2 m · 4 s · ~22 m | ⚪ 0,0 |
 | 13 h | 10 (16) NNO | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
 | 16 h | 11 (17) NNE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
 | sam. 14 10 h | 7 (12) NNE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
 | 13 h | 4 (8) NE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
-| 16 h | 7 (10) NE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 3 s · ~12 m | ⚪ 0,0 |
+| 16 h | 7 (11) NE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 3 s · ~12 m | ⚪ 0,0 |
 | dim. 15 10 h | 7 (11) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 3 s · ~18 m | ⚪ 0,0 |
 | 13 h | 11 (18) SE | side-shore | → La Grande-Motte | 1,5 m · 6 s · ~62 m | ⚪ 0,0 |
-| 16 h | 14 (28) SSE | side-on | → La Grande-Motte | 1,3 m · 6 s · ~62 m | ⚪ 2,6 |
+| 16 h | 14 (28) SSE | side-on | → La Grande-Motte | 1,3 m · 6 s · ~61 m | ⚪ 2,6 |
 | lun. 16 10 h | 5 (7) O | side-on | → Plage Sud (Port Camargue) | 0,1 m · 3 s · ~11 m | ⚪ 0,0 |
 | 13 h | 5 (9) SO | de mer | → La Grande-Motte | 0,7 m · 6 s · ~61 m | ⚪ 0,0 |
 | 16 h | 6 (8) S | de mer | → La Grande-Motte | 0,7 m · 6 s · ~61 m | ⚪ 0,0 |
