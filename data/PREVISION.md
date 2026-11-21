@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : samedi 21 novembre 2026 à 23:58 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : dimanche 22 novembre 2026 à 00:55 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -12,7 +12,7 @@ Vent en nœuds (rafales), d'où il vient · houle = mer qui avance avec le vent 
 
 ### Frontignan ↔ Palavas (17 km)
 
-Bouée 03404 : 0,7 m mesurés à 23:30 (modèles ×1.00 sur les premières heures).
+Bouée 03404 : 0,8 m mesurés à 00:30 (modèles ×0.99 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
@@ -25,15 +25,15 @@ Bouée 03404 : 0,7 m mesurés à 23:30 (modèles ×1.00 sur les premières heure
 | mar. 24 10 h | 5 (6) N | ⚠ de terre | → Frontignan plage | 0,0 m · 2 s · ~5 m | ⚪ 0,0 |
 | 13 h | 8 (13) ENE | side-shore | → Frontignan plage | 0,3 m · 3 s · ~10 m | ⚪ 0,0 |
 | 16 h | 10 (17) ENE | side-shore | → Frontignan plage | 0,2 m · 3 s · ~10 m | ⚪ 0,0 |
-| mer. 25 10 h | 6 (13) NO | ⚠ de terre | → Palavas | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
-| 13 h | 9 (25) NO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~12 m | ⚪ 0,0 |
-| 16 h | 5 (24) O | ⚠ side-off | → Palavas | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
+| mer. 25 10 h | 5 (12) NO | ⚠ de terre | → Palavas | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
+| 13 h | 9 (25) NO | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~9 m | ⚪ 0,0 |
+| 16 h | 5 (23) O | ⚠ side-off | → Palavas | 0,2 m · 3 s · ~12 m | ⚪ 0,0 |
 
 _Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauvages entre les Aresquiers et Maguelone : peu de sorties._
 
 ### Palavas ↔ La Grande-Motte (10 km)
 
-Bouée 03001 : 0,8 m mesurés à 23:30 (modèles ×0.97 sur les premières heures).
+Bouée 03001 : 0,9 m mesurés à 00:30 (modèles ×0.91 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
@@ -41,20 +41,20 @@ Bouée 03001 : 0,8 m mesurés à 23:30 (modèles ×0.97 sur les premières heure
 | 13 h | 27 (41) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,7 m · 4 s · ~24 m | ⚪ 0,9 |
 | 16 h | 22 (37) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 1,0 m · 5 s · ~33 m | ⚪ 1,1 |
 | lun. 23 10 h | 14 (22) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,7 m · 4 s · ~20 m | ⚪ 1,5 |
-| 13 h | 17 (26) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,7 m · 4 s · ~20 m | ⚪ 0,4 |
+| 13 h | 17 (26) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,7 m · 4 s · ~20 m | ⚪ 0,5 |
 | 16 h | 15 (23) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~19 m | ⚪ 0,2 |
-| mar. 24 10 h | 4 (5) NE | ⚠ side-off | → Palavas | 0,2 m · 2 s · ~7 m | ⚪ 0,0 |
-| 13 h | 8 (13) ENE | side-shore | → Palavas | 0,2 m · 2 s · ~9 m | ⚪ 0,0 |
+| mar. 24 10 h | 4 (5) NE | ⚠ side-off | → Palavas | 0,2 m · 2 s · ~6 m | ⚪ 0,0 |
+| 13 h | 8 (14) ENE | side-shore | → Palavas | 0,2 m · 2 s · ~9 m | ⚪ 0,0 |
 | 16 h | 10 (17) ENE | side-shore | → Palavas | 0,1 m · 2 s · ~9 m | ⚪ 0,0 |
 | mer. 25 10 h | 7 (14) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~13 m | ⚪ 0,0 |
-| 13 h | 11 (28) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
+| 13 h | 11 (28) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
 | 16 h | 8 (27) OSO | side-shore | → La Grande-Motte (Grand Travers) | 0,1 m · 4 s · ~22 m | ⚪ 0,0 |
 
 _Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues du port de Carnon à contourner au large._
 
 ### Plage Sud → La Grande-Motte (6 km)
 
-Bouée 03001 : 0,8 m mesurés à 23:30 (modèles ×0.97 sur les premières heures).
+Bouée 03001 : 0,9 m mesurés à 00:30 (modèles ×0.91 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
@@ -65,11 +65,11 @@ Bouée 03001 : 0,8 m mesurés à 23:30 (modèles ×0.97 sur les premières heure
 | 13 h | 20 (28) ONO | side-shore | → Plage Sud (Port Camargue) | 0,9 m · 4 s · ~23 m | ⚪ 0,0 |
 | 16 h | 18 (25) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~23 m | ⚪ 0,0 |
 | mar. 24 10 h | 5 (6) NNE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
-| 13 h | 9 (16) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~9 m | ⚪ 0,0 |
+| 13 h | 10 (17) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~9 m | ⚪ 0,0 |
 | 16 h | 12 (17) ENE | ⚠ side-off | → La Grande-Motte | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
 | mer. 25 10 h | 9 (18) NNO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,3 m · 4 s · ~20 m | ⚪ 0,0 |
-| 13 h | 11 (34) NO | side-shore | → Plage Sud (Port Camargue) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
-| 16 h | 8 (34) OSO | side-on | → La Grande-Motte | 0,1 m · 4 s · ~20 m | ⚪ 0,0 |
+| 13 h | 11 (34) NO | side-shore | → Plage Sud (Port Camargue) | 0,2 m · 3 s · ~15 m | ⚪ 0,0 |
+| 16 h | 8 (33) OSO | side-on | → La Grande-Motte | 0,2 m · 4 s · ~21 m | ⚪ 0,0 |
 
 _Sens unique, par SE / ESE : de la plage Sud vers la Grande-Motte en traversant la baie d'Aigues-Mortes, au large des passes de Port Camargue et du Grau-du-Roi. Sortie possible au Boucanet._
 
