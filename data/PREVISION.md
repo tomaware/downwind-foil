@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : dimanche 22 novembre 2026 à 14:19 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : dimanche 22 novembre 2026 à 15:13 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -37,13 +37,13 @@ Bouée 03001 : 1,7 m mesurés à 13:30 (modèles ×0.94 sur les premières heure
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| dim. 22 16 h | 21 (30) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 1,1 m · 5 s · ~36 m | ⚪ 1,1 |
-| lun. 23 10 h | 11 (19) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~21 m | ⚪ 0,0 |
+| dim. 22 16 h | 23 (33) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 1,1 m · 5 s · ~36 m | ⚪ 0,5 |
+| lun. 23 10 h | 11 (20) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~21 m | ⚪ 0,0 |
 | 13 h | 16 (26) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~19 m | ⚪ 0,3 |
 | 16 h | 16 (24) ONO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,5 m · 3 s · ~17 m | ⚪ 0,1 |
 | mar. 24 10 h | 6 (9) NE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 13 h | 8 (13) NE | ⚠ side-off | → Palavas | 0,3 m · 2 s · ~9 m | ⚪ 0,0 |
-| 16 h | 8 (13) NE | ⚠ side-off | → Palavas | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
+| 16 h | 9 (13) NE | ⚠ side-off | → Palavas | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
 | mer. 25 10 h | 7 (15) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
 | 13 h | 14 (23) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,3 m · 4 s · ~19 m | ⚪ 0,6 |
 | 16 h | 12 (21) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~17 m | ⚪ 0,0 |
@@ -58,8 +58,8 @@ Bouée 03001 : 1,7 m mesurés à 13:30 (modèles ×0.94 sur les premières heure
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| dim. 22 16 h | 25 (35) ONO | side-shore | → Plage Sud (Port Camargue) | 1,1 m · 5 s · ~40 m | ⚪ 0,0 |
-| lun. 23 10 h | 21 (29) O | side-shore | → Plage Sud (Port Camargue) | 0,8 m · 4 s · ~23 m | ⚪ 0,0 |
+| dim. 22 16 h | 24 (34) ONO | side-shore | → Plage Sud (Port Camargue) | 1,2 m · 5 s · ~40 m | ⚪ 0,0 |
+| lun. 23 10 h | 21 (30) O | side-shore | → Plage Sud (Port Camargue) | 0,8 m · 4 s · ~23 m | ⚪ 0,0 |
 | 13 h | 20 (28) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~22 m | ⚪ 0,0 |
 | 16 h | 18 (28) ONO | side-shore | → Plage Sud (Port Camargue) | 0,6 m · 4 s · ~20 m | ⚪ 0,0 |
 | mar. 24 10 h | 5 (8) NE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
