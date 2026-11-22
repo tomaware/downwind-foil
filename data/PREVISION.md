@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : dimanche 22 novembre 2026 à 16:04 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : dimanche 22 novembre 2026 à 17:02 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -12,64 +12,64 @@ Vent en nœuds (rafales), d'où il vient · houle = mer qui avance avec le vent 
 
 ### Frontignan ↔ Palavas (17 km)
 
-Bouée 03404 : 1,4 m mesurés à 15:30 (modèles ×0.91 sur les premières heures).
+Bouée 03404 : 1,3 m mesurés à 16:30 (modèles ×0.86 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| dim. 22 16 h | 21 (32) ONO | ⚠ de terre | → Palavas | 0,8 m · 4 s · ~31 m | ⚪ 0,0 |
-| lun. 23 10 h | 12 (21) ONO | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~14 m | ⚪ 0,0 |
+| lun. 23 10 h | 15 (24) ONO | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~15 m | ⚪ 0,0 |
 | 13 h | 14 (24) ONO | ⚠ de terre | → Palavas | 0,5 m · 3 s · ~15 m | ⚪ 0,0 |
-| 16 h | 12 (23) ONO | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~15 m | ⚪ 0,0 |
-| mar. 24 10 h | 9 (13) NE | side-shore | → Frontignan plage | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
-| 13 h | 9 (14) NE | side-shore | → Frontignan plage | 0,3 m · 3 s · ~10 m | ⚪ 0,0 |
-| 16 h | 11 (18) NE | side-shore | → Frontignan plage | 0,1 m · 3 s · ~12 m | ⚪ 0,0 |
-| mer. 25 10 h | 7 (12) ONO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
-| 13 h | 12 (20) ONO | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~12 m | ⚪ 0,0 |
-| 16 h | 10 (19) ONO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~13 m | ⚪ 0,0 |
-| jeu. 26 10 h | 11 (22) ONO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
-| 13 h | 12 (18) NO | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~13 m | ⚪ 0,0 |
+| 16 h | 13 (22) NO | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~15 m | ⚪ 0,0 |
+| mar. 24 10 h | 10 (15) NE | side-shore | → Frontignan plage | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
+| 13 h | 13 (18) NE | side-shore | → Frontignan plage | 0,3 m · 2 s · ~9 m | ⚪ 0,0 |
+| 16 h | 12 (20) NE | side-shore | → Frontignan plage | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
+| mer. 25 10 h | 8 (15) ONO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~7 m | ⚪ 0,0 |
+| 13 h | 11 (20) ONO | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
+| 16 h | 10 (19) ONO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~12 m | ⚪ 0,0 |
+| jeu. 26 10 h | 10 (21) NO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
+| 13 h | 11 (17) NO | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~13 m | ⚪ 0,0 |
+| 16 h | 11 (14) ONO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
 
 _Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauvages entre les Aresquiers et Maguelone : peu de sorties._
 
 ### Palavas ↔ La Grande-Motte (10 km)
 
-Bouée 03001 : 1,8 m mesurés à 15:30 (modèles ×0.94 sur les premières heures).
+Bouée 03001 : 1,6 m mesurés à 16:30 (modèles ×0.83 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| dim. 22 16 h | 20 (28) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 1,0 m · 5 s · ~36 m | ⚪ 0,4 |
-| lun. 23 10 h | 12 (20) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~21 m | ⚪ 0,0 |
-| 13 h | 16 (27) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~19 m | ⚪ 0,4 |
-| 16 h | 16 (24) ONO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,5 m · 3 s · ~17 m | ⚪ 0,1 |
-| mar. 24 10 h | 7 (11) NE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
-| 13 h | 9 (14) NE | ⚠ side-off | → Palavas | 0,3 m · 2 s · ~9 m | ⚪ 0,0 |
-| 16 h | 9 (13) NE | ⚠ side-off | → Palavas | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
-| mer. 25 10 h | 6 (12) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
-| 13 h | 13 (22) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,3 m · 4 s · ~19 m | ⚪ 0,5 |
-| 16 h | 12 (22) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~17 m | ⚪ 0,0 |
-| jeu. 26 10 h | 13 (24) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
+| lun. 23 10 h | 16 (25) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~21 m | ⚪ 2,3 |
+| 13 h | 19 (28) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~20 m | ⚪ 0,3 |
+| 16 h | 15 (24) ONO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,5 m · 3 s · ~18 m | ⚪ 0,0 |
+| mar. 24 10 h | 9 (13) NE | ⚠ side-off | → Palavas | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
+| 13 h | 12 (17) NE | ⚠ side-off | → Palavas | 0,3 m · 2 s · ~8 m | ⚪ 0,0 |
+| 16 h | 10 (15) NE | ⚠ side-off | → Palavas | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
+| mer. 25 10 h | 6 (10) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
+| 13 h | 12 (23) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~17 m | ⚪ 0,0 |
+| 16 h | 14 (23) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~15 m | ⚪ 0,8 |
+| jeu. 26 10 h | 8 (18) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
 | 13 h | 10 (20) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,3 m · 3 s · ~14 m | ⚪ 0,0 |
+| 16 h | 8 (13) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
 
 _Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues du port de Carnon à contourner au large._
 
 ### Plage Sud → La Grande-Motte (6 km)
 
-Bouée 03001 : 1,8 m mesurés à 15:30 (modèles ×0.94 sur les premières heures).
+Bouée 03001 : 1,6 m mesurés à 16:30 (modèles ×0.83 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
-| dim. 22 16 h | 21 (30) ONO | side-shore | → Plage Sud (Port Camargue) | 1,1 m · 5 s · ~40 m | ⚪ 0,0 |
-| lun. 23 10 h | 22 (30) O | side-shore | → Plage Sud (Port Camargue) | 0,8 m · 4 s · ~23 m | ⚪ 0,0 |
-| 13 h | 20 (29) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~22 m | ⚪ 0,0 |
-| 16 h | 18 (27) ONO | side-shore | → Plage Sud (Port Camargue) | 0,6 m · 4 s · ~20 m | ⚪ 0,0 |
-| mar. 24 10 h | 7 (10) NE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
-| 13 h | 9 (15) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,3 m · 2 s · ~8 m | ⚪ 0,0 |
-| 16 h | 10 (15) ENE | ⚠ side-off | → La Grande-Motte | 0,1 m · 3 s · ~16 m | ⚪ 0,0 |
-| mer. 25 10 h | 7 (14) NO | side-shore | → Plage Sud (Port Camargue) | 0,3 m · 3 s · ~18 m | ⚪ 0,0 |
-| 13 h | 15 (24) O | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 4 s · ~23 m | ⚪ 0,0 |
-| 16 h | 15 (23) O | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 4 s · ~22 m | ⚪ 0,0 |
-| jeu. 26 10 h | 11 (23) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,5 m · 4 s · ~21 m | ⚪ 0,0 |
-| 13 h | 12 (22) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
+| lun. 23 10 h | 23 (33) O | side-shore | → Plage Sud (Port Camargue) | 0,8 m · 4 s · ~23 m | ⚪ 0,0 |
+| 13 h | 20 (32) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~24 m | ⚪ 0,0 |
+| 16 h | 18 (27) ONO | side-shore | → Plage Sud (Port Camargue) | 0,6 m · 4 s · ~21 m | ⚪ 0,0 |
+| mar. 24 10 h | 9 (13) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
+| 13 h | 11 (17) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
+| 16 h | 10 (14) ENE | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 3 s · ~13 m | ⚪ 0,0 |
+| mer. 25 10 h | 8 (12) ONO | side-shore | → Plage Sud (Port Camargue) | 0,3 m · 3 s · ~15 m | ⚪ 0,0 |
+| 13 h | 14 (25) O | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 4 s · ~20 m | ⚪ 0,0 |
+| 16 h | 16 (24) O | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 4 s · ~21 m | ⚪ 0,0 |
+| jeu. 26 10 h | 7 (18) NNO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,2 m · 4 s · ~29 m | ⚪ 0,0 |
+| 13 h | 11 (21) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,3 m · 3 s · ~17 m | ⚪ 0,0 |
+| 16 h | 7 (13) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,4 m · 4 s · ~19 m | ⚪ 0,0 |
 
 _Sens unique, par SE / ESE : de la plage Sud vers la Grande-Motte en traversant la baie d'Aigues-Mortes, au large des passes de Port Camargue et du Grau-du-Roi. Sortie possible au Boucanet._
 
