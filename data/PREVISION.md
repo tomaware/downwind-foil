@@ -1,6 +1,6 @@
 # Downwind wing foil — prévision
 
-Mise à jour : mardi 24 novembre 2026 à 22:14 · niveau **intermédiaire** (vent idéal 16-25 nd)
+Mise à jour : mardi 24 novembre 2026 à 23:16 · niveau **intermédiaire** (vent idéal 16-25 nd)
 
 ## Meilleurs créneaux (4 jours)
 
@@ -12,14 +12,14 @@ Vent en nœuds (rafales), d'où il vient · houle = mer qui avance avec le vent 
 
 ### Frontignan ↔ Palavas (17 km)
 
-Bouée 03404 : 2,1 m mesurés à 21:30 (modèles ×1.15 sur les premières heures).
+Bouée 03404 : 2,5 m mesurés à 22:30 (modèles ×1.32 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
 | mer. 25 10 h | 6 (8) NNO | ⚠ de terre | → Frontignan plage | 0,0 m · 2 s · ~5 m | ⚪ 0,0 |
 | 13 h | 5 (10) ONO | ⚠ de terre | → Palavas | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
-| 16 h | 7 (14) NO | ⚠ de terre | → Palavas | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
-| jeu. 26 10 h | 12 (19) ONO | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~12 m | ⚪ 0,0 |
+| 16 h | 7 (13) NO | ⚠ de terre | → Palavas | 0,1 m · 3 s · ~10 m | ⚪ 0,0 |
+| jeu. 26 10 h | 12 (19) ONO | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~11 m | ⚪ 0,0 |
 | 13 h | 12 (19) ONO | ⚠ de terre | → Palavas | 0,5 m · 3 s · ~15 m | ⚪ 0,0 |
 | 16 h | 11 (18) ONO | ⚠ de terre | → Palavas | 0,5 m · 3 s · ~18 m | ⚪ 0,0 |
 | ven. 27 10 h | 5 (8) ONO | ⚠ de terre | → Palavas | 0,1 m · 3 s · ~14 m | ⚪ 0,0 |
@@ -33,20 +33,20 @@ _Par SO de Frontignan vers Palavas, par NE / ENE dans l'autre sens. Plages sauva
 
 ### Palavas ↔ La Grande-Motte (10 km)
 
-Bouée 03001 : 2,4 m mesurés à 21:30 (modèles ×1.41 sur les premières heures).
+Bouée 03001 : 2,2 m mesurés à 22:30 (modèles ×1.22 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
 | mer. 25 10 h | 10 (14) NNO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,1 m · 2 s · ~5 m | ⚪ 0,0 |
 | 13 h | 7 (11) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,2 m · 2 s · ~8 m | ⚪ 0,0 |
-| 16 h | 4 (17) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
-| jeu. 26 10 h | 9 (14) ONO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~15 m | ⚪ 0,0 |
-| 13 h | 10 (15) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~19 m | ⚪ 0,0 |
+| 16 h | 3 (12) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
+| jeu. 26 10 h | 8 (13) ONO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,4 m · 3 s · ~15 m | ⚪ 0,0 |
+| 13 h | 9 (14) ONO | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~19 m | ⚪ 0,0 |
 | 16 h | 8 (12) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,6 m · 4 s · ~20 m | ⚪ 0,0 |
 | ven. 27 10 h | 4 (7) NO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
 | 13 h | 5 (10) O | ⚠ side-off | → La Grande-Motte (Grand Travers) | 0,2 m · 4 s · ~28 m | ⚪ 0,0 |
 | 16 h | 4 (7) NNO | ⚠ de terre | → La Grande-Motte (Grand Travers) | 0,1 m · 2 s · ~4 m | ⚪ 0,0 |
-| sam. 28 10 h | 6 (8) N | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~13 m | ⚪ 0,0 |
+| sam. 28 10 h | 5 (8) N | ⚠ de terre | → Palavas | 0,4 m · 3 s · ~13 m | ⚪ 0,0 |
 | 13 h | 7 (12) NNE | ⚠ de terre | → Palavas | 0,3 m · 3 s · ~13 m | ⚪ 0,0 |
 | 16 h | 7 (12) NNE | ⚠ de terre | → Palavas | 0,2 m · 3 s · ~10 m | ⚪ 0,0 |
 
@@ -54,15 +54,15 @@ _Par SO de Palavas vers la Grande-Motte, par E / ENE dans l'autre sens. Digues d
 
 ### Plage Sud → La Grande-Motte (6 km)
 
-Bouée 03001 : 2,4 m mesurés à 21:30 (modèles ×1.41 sur les premières heures).
+Bouée 03001 : 2,2 m mesurés à 22:30 (modèles ×1.22 sur les premières heures).
 
 | Heure | Vent | Côte | Sens | Houle | Note |
 |---|---|---|---|---|---|
 | mer. 25 10 h | 10 (14) NNO | ⚠ de terre | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~6 m | ⚪ 0,0 |
 | 13 h | 7 (12) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,2 m · 3 s · ~11 m | ⚪ 0,0 |
-| 16 h | 9 (18) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,2 m · 3 s · ~13 m | ⚪ 0,0 |
-| jeu. 26 10 h | 13 (20) ONO | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 3 s · ~16 m | ⚪ 0,0 |
-| 13 h | 10 (15) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~21 m | ⚪ 0,0 |
+| 16 h | 6 (13) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,2 m · 3 s · ~13 m | ⚪ 0,0 |
+| jeu. 26 10 h | 12 (19) ONO | side-shore | → Plage Sud (Port Camargue) | 0,5 m · 3 s · ~16 m | ⚪ 0,0 |
+| 13 h | 9 (14) ONO | side-shore | → Plage Sud (Port Camargue) | 0,7 m · 4 s · ~21 m | ⚪ 0,0 |
 | 16 h | 9 (13) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,6 m · 4 s · ~22 m | ⚪ 0,0 |
 | ven. 27 10 h | 6 (9) NO | ⚠ side-off | → Plage Sud (Port Camargue) | 0,1 m · 2 s · ~8 m | ⚪ 0,0 |
 | 13 h | 6 (11) ONO | side-shore | → Plage Sud (Port Camargue) | 0,2 m · 4 s · ~28 m | ⚪ 0,0 |
